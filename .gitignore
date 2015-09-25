@@ -37,3 +37,6 @@ test.unitypackage
 Assets/Plugins/PlayMaker
 PlayMaker.meta
 iTween.meta
+Assets/Editor/CrossPlatformInput
+CrossPlatformInput.meta
+Assets/Standard Assets/CrossPlatformInput
