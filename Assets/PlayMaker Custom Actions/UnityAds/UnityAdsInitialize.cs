@@ -44,7 +44,7 @@ namespace HutongGames.PlayMaker.Actions
 				#if UNITY_IOS
 				Advertisement.Initialize(IosGameId.Value,testMode.Value);
 				#elif UNITY_ANDROID
-				Advertisement.Initialize(AndroidGameId.Value,,testMode.Value);
+				Advertisement.Initialize(AndroidGameId.Value,testMode.Value);
 				#endif
 			#endif
 			Finish();
