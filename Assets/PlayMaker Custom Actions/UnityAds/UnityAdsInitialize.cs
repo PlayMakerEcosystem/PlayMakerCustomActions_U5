@@ -23,7 +23,7 @@ namespace HutongGames.PlayMaker.Actions
 		#endif
 		public FsmString IosGameId;
 
-		#if UNITY_IOS
+		#if UNITY_ANDROID
 		[ActionSection("You are currently targeting Android")]
 		[RequiredField]
 		#endif
