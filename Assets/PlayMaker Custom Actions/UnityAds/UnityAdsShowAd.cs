@@ -75,8 +75,8 @@ namespace HutongGames.PlayMaker.Actions
 
 			void ShowAd()
 			{
-				ShowOptions options = new ShowOptions { resultCallback = HandleShowResult , gamerSid = gamerSid.Value  };
-				
+				ShowOptions options = new ShowOptions { resultCallback = HandleShowResult, gamerSid = string.IsNullOrEmpty(gamerSid.Value)?null:gamerSid.Value};
+
 				if (zoneId.IsNone)
 				{
 					Advertisement.Show(null, options);
