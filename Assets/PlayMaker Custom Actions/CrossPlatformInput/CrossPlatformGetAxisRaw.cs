@@ -3,8 +3,9 @@
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
 using UnityEngine;
+#if CROSS_PLATFORM_INPUT 
 using UnityStandardAssets.CrossPlatformInput;
-
+#endif
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("CrossPlatformInput")]
