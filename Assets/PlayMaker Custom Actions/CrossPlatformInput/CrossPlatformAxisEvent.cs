@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 #endif
 
+#pragma warning disable 0162
+
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("CrossPlatformInput")]

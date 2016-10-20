@@ -6,6 +6,9 @@ using UnityEngine;
 #if CROSS_PLATFORM_INPUT 
 using UnityStandardAssets.CrossPlatformInput;
 #endif
+
+#pragma warning disable 0162
+
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("CrossPlatformInput")]
