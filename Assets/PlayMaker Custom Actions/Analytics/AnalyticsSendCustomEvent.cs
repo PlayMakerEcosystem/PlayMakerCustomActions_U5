@@ -44,7 +44,7 @@ namespace HutongGames.PlayMaker.Actions
 			AnalyticsResult _result;
 
 			if (keys.Length == 0) {
-				_result = Analytics.CustomEvent (eventName.Value);
+				_result = Analytics.CustomEvent(eventName.Value,null);
 			} else {
 				Dictionary<string,object> _data = new Dictionary<string, object> ();
 
