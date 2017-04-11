@@ -71,11 +71,11 @@ namespace HutongGames.PlayMaker.Actions
 			if (gos != null)
 			{
 				ps = Fsm.GetOwnerDefaultTarget(gameObject).GetComponent<ParticleSystem>();
-				ps.particleSystem.randomSeed = 1;
+				ps.GetComponent<ParticleSystem>().randomSeed = 1;
 
 				foreach (Transform trans in gos.GetComponentsInChildren<Transform>(true)){
-					if (trans.gameObject.particleSystem != null){
-						trans.gameObject.particleSystem.randomSeed = 2;
+					if (trans.gameObject.GetComponent<ParticleSystem>() != null){
+						trans.gameObject.GetComponent<ParticleSystem>().randomSeed = 2;
 					}
 				}
 			}
@@ -94,13 +94,13 @@ namespace HutongGames.PlayMaker.Actions
 		}
 		public override void OnEnter()
 		{
-			duration= ps.particleSystem.duration;
+			duration= ps.GetComponent<ParticleSystem>().duration;
 
 			playBegin = playParticle.Value;
 			speedTemp = speed.Value;
 
 			if (playParticle.Value == true){
-			ps.particleSystem.Play(inclChildren.Value);
+			ps.GetComponent<ParticleSystem>().Play(inclChildren.Value);
 			}
 
 			if (rewindBy.Value != 0.0f)
@@ -116,18 +116,18 @@ namespace HutongGames.PlayMaker.Actions
 		public override void OnUpdate()
 		{
 
-			if (rewind.Value && !ps.particleSystem.IsAlive(inclChildren.Value)) {
+			if (rewind.Value && !ps.GetComponent<ParticleSystem>().IsAlive(inclChildren.Value)) {
 				Debug.LogWarning ("Past the particle lifetime - it won't work");
 				if(exit.Value == true) Fsm.Event(finishEvent);
 			    Finish();
 			}
 
 			if (playParticle.Value == true && ps.isPlaying == false){
-				ps.particleSystem.Play(inclChildren.Value);
+				ps.GetComponent<ParticleSystem>().Play(inclChildren.Value);
 			}
 
 			if (playParticle.Value == false && ps.isPlaying == true){
-				ps.particleSystem.Pause(inclChildren.Value);
+				ps.GetComponent<ParticleSystem>().Pause(inclChildren.Value);
 			}
 
 
@@ -139,7 +139,7 @@ namespace HutongGames.PlayMaker.Actions
 		void rewindGo(){
 
 			if (!rewind.Value){
-				timer = ps.particleSystem.time;
+				timer = ps.GetComponent<ParticleSystem>().time;
 				temp = timer;
 			}
 			
@@ -152,13 +152,13 @@ namespace HutongGames.PlayMaker.Actions
 				}
 				
 				
-				ps.particleSystem.Simulate(timer,inclChildren.Value);
+				ps.GetComponent<ParticleSystem>().Simulate(timer,inclChildren.Value);
 				timer -= Time.deltaTime*Mathf.Abs(speed.Value);
 				
 				if (timer <= timeMax || timer <= 0.0f){
 					if (rewindBy.Value == 0.0f){
 						//ps.particleSystem.Clear();
-						ps.particleSystem.Simulate(0,inclChildren.Value, true);
+						ps.GetComponent<ParticleSystem>().Simulate(0,inclChildren.Value, true);
 					}
 					
 					continuePlay();

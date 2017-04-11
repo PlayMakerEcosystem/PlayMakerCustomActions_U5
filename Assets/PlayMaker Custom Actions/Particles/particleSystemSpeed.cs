@@ -46,7 +46,7 @@ namespace HutongGames.PlayMaker.Actions
 				ps = Fsm.GetOwnerDefaultTarget(gameObject[i]).GetComponent<ParticleSystem>();
 
 				if (speed[i].Value <0.0f) Debug.LogWarning ("Negative particle speed is not supported. Corrected for now by actions - please correct. Must be 0.0f or above");
-				ps.particleSystem.playbackSpeed = Mathf.Abs(speed[i].Value);
+				ps.GetComponent<ParticleSystem>().playbackSpeed = Mathf.Abs(speed[i].Value);
 
 				}
 	
@@ -63,7 +63,7 @@ namespace HutongGames.PlayMaker.Actions
 				
 				ps = Fsm.GetOwnerDefaultTarget(gameObject[i]).GetComponent<ParticleSystem>();
 
-				ps.particleSystem.playbackSpeed = Mathf.Abs(speed[i].Value);
+				ps.GetComponent<ParticleSystem>().playbackSpeed = Mathf.Abs(speed[i].Value);
 				
 			}
 			
