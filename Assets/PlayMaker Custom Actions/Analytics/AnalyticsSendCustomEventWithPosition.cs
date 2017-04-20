@@ -41,7 +41,12 @@ namespace HutongGames.PlayMaker.Actions
 		public override void Reset()
 		{
 			eventName = null;
+			gameObjectPosition = null;
+			OrVector3position = new FsmVector3 (){ UseVariable = true };
 
+			result = AnalyticsResult.AnalyticsDisabled;
+			success = null;
+			failure = null;
 		}
 
 		public override void OnEnter()

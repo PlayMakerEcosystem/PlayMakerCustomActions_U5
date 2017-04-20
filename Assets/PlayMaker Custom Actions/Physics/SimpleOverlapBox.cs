@@ -71,7 +71,7 @@ namespace HutongGames.PlayMaker.Actions
 
             if (ignoreTriggerColliders.Value == true)
             {
-                Collider[] colliders = Physics.OverlapBox(scanOrigin.Value.gameObject.transform.position, halfExtents.Value, orientation = Quaternion.identity, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), QueryTriggerInteraction.Ignore);
+                Collider[] colliders = Physics.OverlapBox(scanOrigin.Value.gameObject.transform.position, halfExtents.Value, orientation, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), QueryTriggerInteraction.Ignore);
                 if (colliders.Length == 0)
                 {
                     Fsm.Event(noHitEvent);
@@ -103,7 +103,7 @@ namespace HutongGames.PlayMaker.Actions
 
             } else
             {
-                Collider[] colliders = Physics.OverlapBox(scanOrigin.Value.gameObject.transform.position, halfExtents.Value, orientation = Quaternion.identity, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), QueryTriggerInteraction.Collide);
+                Collider[] colliders = Physics.OverlapBox(scanOrigin.Value.gameObject.transform.position, halfExtents.Value, orientation, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), QueryTriggerInteraction.Collide);
                 if (colliders.Length == 0)
                 {
                     Fsm.Event(noHitEvent);

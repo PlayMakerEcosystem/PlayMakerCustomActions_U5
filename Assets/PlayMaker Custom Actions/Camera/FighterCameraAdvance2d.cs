@@ -81,7 +81,6 @@ namespace HutongGames.PlayMaker.Actions
 		float orthoSize;
 		Vector3 pos;
 		Vector3 originalPosFirstPass;
-		Vector3 angles;
 		Vector3 tempPlayer;
 		Vector3 finalCameraCenter;
 
@@ -224,7 +223,6 @@ namespace HutongGames.PlayMaker.Actions
 			t = GetInterpolation(t,interpolation);
 
 			cameraCenter = objTransform.transform.position;
-			angles = objTransform.transform.rotation.eulerAngles;
 
 			cameraCenter.z = originalPosFirstPass.z;
 

@@ -43,7 +43,6 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			
 			deviceType.Value = VRSettings.loadedDevice;
 
 			if (noDevice != null && VRSettings.loadedDevice == VRDeviceType.None ) {

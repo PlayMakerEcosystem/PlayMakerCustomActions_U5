@@ -47,8 +47,6 @@ namespace HutongGames.PlayMaker.Actions
 		[UIHint(UIHint.FsmBool)]
 		public FsmBool everyFrame;
 
-		private Transform objTransform;
-
 		private float minX;
 		private float maxX;
 		private float minY;
@@ -59,7 +57,6 @@ namespace HutongGames.PlayMaker.Actions
 
 		public enum LerpInterpolationType {Off,Linear,Quadratic,EaseIn,EaseOut,Smoothstep,Smootherstep,DeltaTime,SimpleSine,DoubleSine,DoubleByHalfSine};
 
-		private FsmBool lerpOn;
 		private float t;
 		private Vector3 tempPlayer;
 
@@ -69,7 +66,7 @@ namespace HutongGames.PlayMaker.Actions
 			gameObject = null;
 			zoomSpeed = 20f;
 			updateTypeSelect = updateType.LateUpdate;
-			lerpOn = true;
+
 			everyFrame = true;
 			orthoSizeMin = 1f;
 			orthoSizeMax= 100f;
@@ -85,8 +82,6 @@ namespace HutongGames.PlayMaker.Actions
 			if (go == null) return;
 
 			_camera = go.GetComponent<Camera>();
-
-			objTransform =  go.GetComponent<Transform>();
 
 			if (_camera.orthographic == false){
 				Debug.Log ("<color=#6B8E23ff> You need a orthographic camera.Please review!</color>",this.Owner);

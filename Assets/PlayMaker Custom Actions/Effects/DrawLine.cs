@@ -122,8 +122,20 @@ namespace HutongGames.PlayMaker.Actions {
 			//
 			_lineRenderer.shadowCastingMode = shadowCastingMode;
 			_lineRenderer.receiveShadows = receiveShadows.Value;
+
+			#if UNITY_5_6_OR_NEWER
+			_lineRenderer.positionCount =  2 ;
+			_lineRenderer.startWidth = startWidth.Value ;
+			_lineRenderer.endWidth = endWidth.Value;
+			_lineRenderer.startColor = startColor.Value;
+			_lineRenderer.endColor = endColor.Value;
+			#else
 			_lineRenderer.SetVertexCount( 2 );
 			_lineRenderer.SetWidth( startWidth.Value , endWidth.Value );
+			_lineRenderer.SetColors( startColor.Value , endColor.Value );
+			#endif
+
+
 			DoUpdatePositions();
 			if( !everyFrame.Value ) {
 				Finish();
@@ -134,8 +146,18 @@ namespace HutongGames.PlayMaker.Actions {
 		public override void OnUpdate () {
 			if( everyFrame.Value ) {
 				DoUpdatePositions();
+
+				#if UNITY_5_6_OR_NEWER
+				_lineRenderer.startWidth = startWidth.Value ;
+				_lineRenderer.endWidth = endWidth.Value;
+				_lineRenderer.startColor = startColor.Value;
+				_lineRenderer.endColor = endColor.Value;
+				#else
 				_lineRenderer.SetWidth( startWidth.Value , endWidth.Value );
 				_lineRenderer.SetColors( startColor.Value , endColor.Value );
+				#endif
+
+
 				_lineRenderer.shadowCastingMode = shadowCastingMode;
 				_lineRenderer.receiveShadows = receiveShadows.Value;
 				_lineRenderer.material = material.Value;

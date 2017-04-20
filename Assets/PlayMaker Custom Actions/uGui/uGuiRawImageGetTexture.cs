@@ -63,14 +63,9 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnExit()
 		{
-			if (_texture==null)
-			{
-				return;
-			}
-			
 			if (resetOnExit.Value)
 			{
-				texture.Value = _texture.texture as Texture2D;
+				texture.Value = _originalTexture  as Texture2D;
 			}
 		}
 	}

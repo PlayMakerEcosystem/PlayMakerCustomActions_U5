@@ -55,7 +55,6 @@ namespace HutongGames.PlayMaker.Actions
 				}
 				else{
 					if (!sendEvent.Value) {
-						if (swipeDir != null) {
 							Vector2 direction = Input.GetTouch(0).position - lastPosition.Value;
 							
 							if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)){
@@ -72,7 +71,6 @@ namespace HutongGames.PlayMaker.Actions
 							}
 							
 							sendEvent.Value = true;
-						}
 					}
 				}
 			}

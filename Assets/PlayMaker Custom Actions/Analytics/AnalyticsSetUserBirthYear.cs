@@ -31,6 +31,8 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			birthYear = null;
 			result = AnalyticsResult.AnalyticsDisabled;
+			success = null;
+			failure = null;
 		}
 
 		public override void OnEnter()

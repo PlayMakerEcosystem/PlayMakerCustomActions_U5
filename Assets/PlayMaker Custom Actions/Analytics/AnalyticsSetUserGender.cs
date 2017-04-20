@@ -31,6 +31,9 @@ namespace HutongGames.PlayMaker.Actions
 		public override void Reset()
 		{
 			gender = null;
+			result = AnalyticsResult.AnalyticsDisabled;
+			success = null;
+			failure = null;
 		}
 
 		public override void OnEnter()

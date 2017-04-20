@@ -55,7 +55,7 @@ namespace HutongGames.PlayMaker.Actions
 			receiptPurchaseData = new FsmString(){UseVariable=true};
 			signature = new FsmString(){UseVariable=true};
 
-			result = null;
+			result = AnalyticsResult.AnalyticsDisabled;
 			success = null;
 			failure = null;
 		}

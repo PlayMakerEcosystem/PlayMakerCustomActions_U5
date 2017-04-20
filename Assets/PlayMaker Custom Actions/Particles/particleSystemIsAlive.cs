@@ -53,7 +53,11 @@ namespace HutongGames.PlayMaker.Actions
 			}
 
 			ps = Fsm.GetOwnerDefaultTarget(gameObject).GetComponent<ParticleSystem>();
+			#if UNITY_5_6_OR_NEWER
+			getDuration.Value = ps.main.duration;
+			#else
 			getDuration.Value = ps.duration;
+			#endif
 
 			
 			if (!ps.IsAlive() & getDuration.Value <= 0)

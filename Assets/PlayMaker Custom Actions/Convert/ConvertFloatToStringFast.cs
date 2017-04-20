@@ -27,7 +27,6 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("Repeat every frame. Useful if the Int variable is changing.")]
 		public FsmBool everyFrame;
 	    
-        private string result;
 		private readonly char[] IntToChar = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 		private char[] m_chars = null;
 		private string m_stringGenerated = "";
@@ -59,10 +58,6 @@ namespace HutongGames.PlayMaker.Actions
 		
 		void DoConvertIntToString()
 		{
-
-
-			System.Text.StringBuilder result = new System.Text.StringBuilder(32);
-
 
 			m_chars = new char[ m_charsCapacity = 32 ];
 

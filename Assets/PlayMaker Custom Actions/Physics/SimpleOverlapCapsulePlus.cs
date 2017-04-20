@@ -110,7 +110,7 @@ namespace HutongGames.PlayMaker.Actions
                     if (list.Count != 0)
                     {
                         Vector3 contactPoint;
-                        bool contactPointSuccess = ClosestPointOnSurface(list[0], scanOriginV3.Value, 1.0f, out contactPoint);
+                       	ClosestPointOnSurface(list[0], scanOriginV3.Value, 1.0f, out contactPoint);
                         hitPoint.Value = contactPoint;
                         hitObject.Value = list[0].gameObject;
                         Fsm.Event(hitEvent);
@@ -157,7 +157,7 @@ namespace HutongGames.PlayMaker.Actions
                     if (list.Count != 0)
                     {
                         Vector3 contactPoint;
-                        bool contactPointSuccess = ClosestPointOnSurface(list[0], scanOriginV3.Value, 1.0f, out contactPoint);
+                        ClosestPointOnSurface(list[0], scanOriginV3.Value, 1.0f, out contactPoint);
                         hitPoint.Value = contactPoint;
                         hitObject.Value = list[0].gameObject;
                         Fsm.Event(hitEvent);

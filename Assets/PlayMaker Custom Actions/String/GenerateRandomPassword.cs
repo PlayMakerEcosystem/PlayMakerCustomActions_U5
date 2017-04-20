@@ -75,7 +75,6 @@ public class GenerateRandomPassword : FsmStateAction
 		{
 			
 			StringBuilder res = new StringBuilder();
-			int temp = Random.Range(0,length);
 			while (0 < length--)
 			{
 				res.Append(buildString[Random.Range(1,buildString.Length)]);

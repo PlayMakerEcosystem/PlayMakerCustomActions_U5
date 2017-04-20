@@ -32,7 +32,6 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("Repeat every frame while the state is active.")]
 		public FsmBool everyFrame;
 	    
-        private string result;
 
 		private char[] m_chars = null;
 		private string m_stringGenerated = "";
@@ -69,8 +68,6 @@ namespace HutongGames.PlayMaker.Actions
 			if (storeResult == null) return;
 			
 	
-			System.Text.StringBuilder result = new System.Text.StringBuilder(32);
-
 			m_chars = new char[ m_charsCapacity = 32 ];
 			Clear();
 

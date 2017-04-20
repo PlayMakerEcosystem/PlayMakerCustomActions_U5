@@ -32,11 +32,15 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("Event Sent if execution failed. Check result for more infos")]
 		public FsmEvent failure;
 
+
 		public override void Reset()
 		{
 			eventName = null;
 			keys = null;
 			values = null;
+			result = AnalyticsResult.AnalyticsDisabled;
+			success = null;
+			failure = null;
 		}
 
 		public override void OnEnter()
@@ -49,6 +53,9 @@ namespace HutongGames.PlayMaker.Actions
 				Dictionary<string,object> _data = new Dictionary<string, object> ();
 
 				for (int i = 0; i < keys.Length; i++) {
+					
+					values[i].UpdateValue ();
+
 					_data.Add (keys [i].Value, values [i].GetValue());
 				}
 

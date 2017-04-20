@@ -136,7 +136,7 @@ namespace HutongGames.PlayMaker.Actions
 					int xYFrom = (int)Mathf.Max(Mathf.Floor(vCenter.y - (vPixelSize.y * 0.5f)), 0);
 					int xYTo = (int)Mathf.Min(Mathf.Ceil(vCenter.y + (vPixelSize.y * 0.5f)), vSourceSize.y);
 
-					Vector4 oColorTotal = new Vector4();
+
 					Color oColorTemp = new Color();
 					float xGridCount = 0;
 					for(int iy = xYFrom; iy < xYTo; iy++){

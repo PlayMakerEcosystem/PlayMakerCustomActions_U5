@@ -94,7 +94,11 @@ namespace HutongGames.PlayMaker.Actions
 		}
 		public override void OnEnter()
 		{
+			#if UNITY_5_6_OR_NEWER
+			duration= ps.GetComponent<ParticleSystem>().main.duration;
+			#else
 			duration= ps.GetComponent<ParticleSystem>().duration;
+			#endif
 
 			playBegin = playParticle.Value;
 			speedTemp = speed.Value;
