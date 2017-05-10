@@ -59,17 +59,17 @@ namespace HutongGames.PlayMaker.Actions {
       }
     }
 
-    void DoActivateGameObject(bool reverse = false) {
+    void DoActivateGameObject() {
       var root = Fsm.GetOwnerDefaultTarget(gameObject);
 
       if (root == null) {
         return;
       }
 
-      DoActivateGameObject(root, reverse);
+      DoActivateGameObject(root);
     }
 
-    void DoActivateGameObject(GameObject node, bool reverse = false) {
+    void DoActivateGameObject(GameObject node) {
       if (node == null) {
         return;
       }
@@ -87,7 +87,7 @@ namespace HutongGames.PlayMaker.Actions {
             link.gameObject.SetActive(activate.Value);
           }
           if (recursive.Value) {
-            DoActivateGameObject(child.gameObject, activate.Value);
+            DoActivateGameObject(child.gameObject);
           }
         }
       }
