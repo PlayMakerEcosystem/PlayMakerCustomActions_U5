@@ -13,20 +13,25 @@ using UnityEngine.Advertisements;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("UnityAds")]
-	[Tooltip("Sets the debug level of UnityAds.")]
-	#if UNITY_5_6_OR_NEWER
-	[Obsolete("Use UnityAdsSetDebugMode instead")]
-	#endif
-	public class UnityAdsSetDebugLevel : FsmStateAction
+	[Tooltip("Gets the debug mode of UnityAds.")]
+	public class UnityAdsGetDebugMode : FsmStateAction
 	{
 		#if UNITY_ADS
-		[Tooltip("The Debug Level")]
-		public Advertisement.DebugLevel  debugLevel;
+		[Tooltip("The Debug Mode")]
+		[UIHint(UIHint.Variable)]
+		public FsmBool debugMode;
 
+		[Tooltip("Event sent if debug mode is true")]
+		public FsmEvent isInDebuggingModeEvent;
+
+		[Tooltip("Event sent if debug mode is false")]
+		public FsmEvent isNotInDebuggingModeEvent;
 
 		public override void Reset()
 		{
-			debugLevel = Advertisement.DebugLevel.None;
+			debugMode = null;
+			isInDebuggingModeEvent = null; 
+			isNotInDebuggingModeEvent = null;
 		}
 		#endif
 
@@ -34,7 +39,10 @@ namespace HutongGames.PlayMaker.Actions
 			#if UNITY_ADS
 			public override void OnEnter()
 			{
-			 	Advertisement.debugLevel = debugLevel;
+				debugMode.Value = Advertisement.debugMode;
+
+				Fsm.Event (Advertisement.debugMode ? isInDebuggingModeEvent : isNotInDebuggingModeEvent);
+
 				Finish();
 
 			}
