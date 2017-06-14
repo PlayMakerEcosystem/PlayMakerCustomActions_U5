@@ -1,5 +1,6 @@
 ﻿// (c) Copyright HutongGames, LLC 2010-2017. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
+// keywords: VideoPlayer
 
 #if UNITY_5_6_OR_NEWER
 
