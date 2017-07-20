@@ -85,7 +85,17 @@ namespace HutongGames.PlayMaker.Actions
 			tagList = new List<GameObject>();
 			
 		}
-		
+
+		public override void OnPreprocess()
+		{
+			#if PLAYMAKER_1_8_5_OR_NEWER
+			if (useLateUpdate.Value == true)
+			{
+				Fsm.HandleLateUpdate = true;
+			}
+			#endif
+		}
+
 		
 		public override void OnEnter()
 		{

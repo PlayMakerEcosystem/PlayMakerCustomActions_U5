@@ -35,9 +35,19 @@ namespace HutongGames.PlayMaker.Actions
 		
 		}
 
-		public override void Awake()
+		public override void OnPreprocess()
 		{
-			Fsm.HandleFixedUpdate = true;
+			if (updateTypeSelect == updateType.FixedUpdate )
+			{
+				Fsm.HandleFixedUpdate = true;
+			}
+
+			#if PLAYMAKER_1_8_5_OR_NEWER
+			if (updateTypeSelect == updateType.LateUpdate)
+			{
+				Fsm.HandleLateUpdate = true;
+			}
+			#endif
 		}
 
 		public override void OnEnter()

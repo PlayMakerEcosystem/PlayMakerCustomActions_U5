@@ -104,10 +104,21 @@ namespace HutongGames.PlayMaker.Actions
 			onlyUseFx =false;
 		}
 
-		public override void Awake()
+		public override void OnPreprocess()
 		{
-			Fsm.HandleFixedUpdate = true;
+			if (updateSelect == UpdateType.FixedUpdate )
+			{
+				Fsm.HandleFixedUpdate = true;
+			}
+
+			#if PLAYMAKER_1_8_5_OR_NEWER
+			if (updateSelect == UpdateType.LateUpdate)
+			{
+				Fsm.HandleLateUpdate = true;
+			}
+			#endif
 		}
+
 
 
 		public override void OnEnter()

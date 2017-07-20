@@ -26,7 +26,14 @@ namespace HutongGames.PlayMaker.Actions
 			pointerNotOverUI = null;
 			isPointerOverUI = null;
 		}
-		
+
+		public override void OnPreprocess()
+		{
+			#if PLAYMAKER_1_8_5_OR_NEWER
+			Fsm.HandleLateUpdate = true;
+			#endif
+		}
+
 		public override void OnLateUpdate()
 		{
 			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {

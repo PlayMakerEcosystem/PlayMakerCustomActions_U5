@@ -21,10 +21,15 @@ namespace HutongGames.PlayMaker.Actions
             finishEvent = null;
         }
 
-        public override void OnEnter()
-        {
+		public override void OnPreprocess()
+		{
+			#if PLAYMAKER_1_8_5_OR_NEWER
 
-        }
+			Fsm.HandleLateUpdate = true;
+
+			#endif
+		}
+
 
 		public override void OnLateUpdate()
         {

@@ -89,7 +89,17 @@ namespace HutongGames.PlayMaker.Actions
 			animationCurvebool= false;
 			isCamera = false;
 		}
-		
+
+		public override void OnPreprocess()
+		{
+			#if PLAYMAKER_1_8_5_OR_NEWER
+			if (isCamera)
+			{
+				Fsm.HandleLateUpdate = true;
+			}
+			#endif
+		}
+
 		public override void OnEnter ()
 		{
 			gameObject2 = Fsm.GetOwnerDefaultTarget(gameObject);

@@ -75,6 +75,16 @@ namespace HutongGames.PlayMaker.Actions
 			useTag = false;
 		}
 
+		public override void OnPreprocess()
+		{
+			#if PLAYMAKER_1_8_5_OR_NEWER
+			if (updateTypeSelect == updateType.LateUpdate)
+			{
+				Fsm.HandleLateUpdate = true;
+			}
+			#endif
+		}
+
 
 		public override void OnEnter()
 		{
