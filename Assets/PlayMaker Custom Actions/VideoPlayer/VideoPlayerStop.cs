@@ -33,7 +33,7 @@ namespace HutongGames.PlayMaker.Actions
 
 			if (_vp != null)
 			{
-				_vp.Play();
+				_vp.Stop ();
 			}
 
 			Finish();
