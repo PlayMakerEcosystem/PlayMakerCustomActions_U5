@@ -67,12 +67,12 @@ namespace HutongGames.PlayMaker.Actions
 
         public override void OnExit()
         {
-            if (pe != null)
+            if (pe != null && resetOnExit.Value)
             {
                 switch (operation)
                 {
                     case Operation.Enable:
-                        pe.colliderMask ^= (1 << collisionLayer);
+                        Disable();
                         break;
 
                     case Operation.Disable:
