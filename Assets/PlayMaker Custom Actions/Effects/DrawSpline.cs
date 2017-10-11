@@ -1,9 +1,11 @@
+/*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
+
 //DrawSpline.cs v1.1.0
 //Curve Drawing code from: https://en.wikibooks.org/wiki/Cg_Programming/Unity/B%C3%A9zier_Curves
 //Other elements from: DrawLine.cs by AndrewRaphaelLukasik@live.com http://hutonggames.com/playmakerforum/index.php?topic=3943.0
 // made by holyfingers : http://hutonggames.com/playmakerforum/index.php?topic=11193.msg52832#msg52832
 
-// __ECO__ __PLAYMAKER__ __ACTION__
+
 
 using UnityEngine;
 namespace HutongGames.PlayMaker.Actions

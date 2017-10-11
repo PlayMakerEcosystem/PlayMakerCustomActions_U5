@@ -1,4 +1,6 @@
-﻿//DrawCurve.cs v1.1.0
+﻿/*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
+
+//DrawCurve.cs v1.1.0
 //Curve Drawing code from: https://en.wikibooks.org/wiki/Cg_Programming/Unity/B%C3%A9zier_Curves
 //Other elements from: DrawLine.cs by AndrewRaphaelLukasik@live.com http://hutonggames.com/playmakerforum/index.php?topic=3943.0
 
