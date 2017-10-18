@@ -6,7 +6,7 @@ using Com.InkleStudios;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	[ActionCategory(ActionCategory.GameObject)]
+	[ActionCategory("Prototype")]
     [ActionTarget(typeof(GameObject), "gameObject", true)]
 	[Tooltip("Creates a Game Object out of a Prototype")]
 	public class PrototypeCreateGameObject : FsmStateAction

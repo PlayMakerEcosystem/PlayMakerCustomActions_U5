@@ -6,7 +6,7 @@ using Com.InkleStudios;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	[ActionCategory(ActionCategory.GameObject)]
+	[ActionCategory("Prototype")]
     [ActionTarget(typeof(GameObject), "gameObject", true)]
 	[Tooltip("Watch OnReturntoPool Event. If on the instance itself, you'll have one frame before the instance is disabled")]
 	public class PrototypeOnReturnToPoolEvent : FsmStateAction

@@ -6,7 +6,7 @@ using Com.InkleStudios;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	[ActionCategory(ActionCategory.GameObject)]
+	[ActionCategory("Prototype")]
     [ActionTarget(typeof(GameObject), "gameObject", true)]
 	[Tooltip("Disable a Prototype Object, returning it to its pool. use OnReturntoPool Event action to get an event from a return call.")]
 	public class PrototypeOnReturnToPool : FsmStateAction
