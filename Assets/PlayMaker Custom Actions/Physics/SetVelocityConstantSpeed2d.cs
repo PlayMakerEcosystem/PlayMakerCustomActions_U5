@@ -32,7 +32,7 @@ namespace HutongGames.PlayMaker.Actions
 			exitAction = false;
 		}
 		
-		public override void Awake()
+		public override void OnPreprocess()
 		{
 			Fsm.HandleFixedUpdate = true;
 		}		

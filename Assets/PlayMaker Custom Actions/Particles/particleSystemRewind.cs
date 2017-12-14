@@ -65,7 +65,7 @@ namespace HutongGames.PlayMaker.Actions
 			exit = false;
 		}
 
-		public override void Awake()
+		public override void OnPreprocess()
 		{
 			GameObject gos = Fsm.GetOwnerDefaultTarget(gameObject);
 			if (gos != null)
