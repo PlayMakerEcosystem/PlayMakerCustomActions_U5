@@ -1,13 +1,13 @@
 // License: Attribution 4.0 International (CC BY 4.0)
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
-// Author : 'Deek'
-// supportURL: 'http://hutonggames.com/playmakerforum/index.php?topic=15458.0'
+// Author : Deek
 
 using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Color)]
+	[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=15458.0")]
 	[Tooltip("Compares one color against multiple and sends Events based on the result.")]
 	public class CompareColors : FsmStateAction
 	{
