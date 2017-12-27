@@ -1,0 +1,11 @@
+{
+"__ECO__":"__SAMPLE__",
+"Type":"Addon",
+"Version":"1.0",
+"UnityMinimumVersion":"5.2.0",
+"PlayMakerMinimumVersion":"1.7.8.3",
+"unitypackage":"PlayMaker/Ecosystem/Custom Samples/UnityAds/PlayMakerUnityAdsBasic.unitypackage",
+"pingAssetPath":"Assets/PlayMaker Custom Samples/UnityAds/UnityAdsBasic/UnityAdsBasic.unity",
+"keywords":"Module Advertising Ads IOS Android",
+"YoutubeVideos":["https://youtu.be/tgVEfkNleaQ"]
+}
