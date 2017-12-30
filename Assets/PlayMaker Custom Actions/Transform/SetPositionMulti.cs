@@ -55,6 +55,14 @@ namespace HutongGames.PlayMaker.Actions
 			}
 		}
 
+		public override void OnPreprocess()
+		{
+#if PLAYMAKER_1_8_5_OR_NEWER
+			//required since PlayMaker 1.8.5 if you want to use OnLateUpdate()
+			Fsm.HandleLateUpdate = true;
+#endif
+		}
+
 		public override void OnLateUpdate()
 		{
 			if(lateUpdate)
