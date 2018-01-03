@@ -37,11 +37,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             DoMultiEnableFSM();
 
-            if (!resetOnExit.Value)
-            {
-                Finish();
-            }
-
+            Finish();
         }
 
         void DoMultiEnableFSM()
