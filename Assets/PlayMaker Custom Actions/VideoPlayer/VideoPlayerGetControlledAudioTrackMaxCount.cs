@@ -43,7 +43,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		void ExecuteAction()
 		{
-			controlledAudioTrackMaxCount = VideoPlayer.controlledAudioTrackMaxCount;
+			controlledAudioTrackMaxCount.Value = VideoPlayer.controlledAudioTrackMaxCount;
 		}
 	}
 }

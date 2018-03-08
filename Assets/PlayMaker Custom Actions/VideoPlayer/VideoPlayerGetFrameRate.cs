@@ -59,7 +59,7 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			if (_vp != null)
 			{
-				frameRate = _vp.frameRate;
+				frameRate.Value = _vp.frameRate;
 				return;
 			}
 		}

@@ -59,7 +59,7 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			if (_vp != null)
 			{
-				frameIndex = (int) _vp.frame;
+				frameIndex.Value = (int) _vp.frame;
 				return;
 			}
 		}

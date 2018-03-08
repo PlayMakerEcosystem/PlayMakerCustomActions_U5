@@ -64,10 +64,10 @@ namespace HutongGames.PlayMaker.Actions
 				if (_vp.isPrepared)
 				{
 					Fsm.Event (isNotPrepared);
-					audioTrackCount = 0;
+					audioTrackCount.Value = 0;
 				} else
 				{
-					audioTrackCount = (int)_vp.audioTrackCount;
+					audioTrackCount.Value = (int)_vp.audioTrackCount;
 				}
 
 				return;
