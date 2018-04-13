@@ -17,12 +17,21 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Transform)]
 	[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=15458.0")]
-	[Tooltip("Resets each Transform of the given GameObjets to its inital value (Position(0, 0, 0), Rotation(0, 0, 0) and Scale(1, 1, 1)).")]
+	[Tooltip("Resets each Transform of the given GameObjects to their inital value (Position(0, 0, 0), Rotation(0, 0, 0) and Scale(1, 1, 1)).")]
 	public class ResetTransforms : FsmStateActionAdvanced
 	{
 		[RequiredField]
 		[Tooltip("The GameObject to reset the Transform of.")]
 		public FsmGameObject[] gameObjects;
+
+		[Tooltip("Include Position.")]
+		public FsmBool resetPosition;
+
+		[Tooltip("Include Rotation.")]
+		public FsmBool resetRotation;
+
+		[Tooltip("Include Scale.")]
+		public FsmBool resetScale;
 
 		public override void Reset()
 		{
@@ -30,6 +39,9 @@ namespace HutongGames.PlayMaker.Actions
 			base.Reset();
 
 			gameObjects = new FsmGameObject[0];
+			resetPosition = true;
+			resetRotation = true;
+			resetScale = true;
 		}
 
 		public override void OnEnter()
@@ -53,11 +65,12 @@ namespace HutongGames.PlayMaker.Actions
 					LogError("GameObject in " + Owner.name + " (" + Fsm.Name + ") is null!");
 					return;
 				}
+
 				Transform trans = go.Value.transform;
 
-				trans.position = new Vector3(0, 0, 0);
-				trans.rotation = new Quaternion(0, 0, 0, 0);
-				trans.localScale = new Vector3(0, 0, 0);
+				if(!resetPosition.IsNone && resetPosition.Value) trans.position = new Vector3(0, 0, 0);
+				if(!resetRotation.IsNone && resetRotation.Value) trans.rotation = new Quaternion(0, 0, 0, 0);
+				if(!resetScale.IsNone && resetScale.Value) trans.localScale = new Vector3(0, 0, 0);
 			}
 		}
 	}
