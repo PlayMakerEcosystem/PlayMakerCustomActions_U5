@@ -1,6 +1,6 @@
-// License: Attribution 4.0 International (CC BY 4.0)
+//License: Attribution 4.0 International (CC BY 4.0)
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
-// Author : Deek
+//Author: Deek
 
 using UnityEngine;
 
@@ -22,13 +22,15 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("The new value for the specified variable.")]
 		public FsmVar setValue;
 
-		[RequiredField]
 		[Tooltip("The event to send. NOTE: Events must be marked Global to send between FSMs.")]
 		public FsmEvent sendEvent;
 
 		[HasFloatSlider(0, 10)]
 		[Tooltip("Optional delay in seconds.")]
 		public FsmFloat delay;
+
+		[Tooltip("Enables the GameObject and FSM if they are disabled before sending the event.")]
+		public FsmBool enable;
 
 		[Tooltip("Repeat every frame. Rarely needed, but can be useful when sending events to other FSMs.")]
 		public bool everyFrame;
@@ -49,6 +51,7 @@ namespace HutongGames.PlayMaker.Actions
 			setValue = new FsmVar();
 			sendEvent = null;
 			delay = null;
+			enable = false;
 			everyFrame = false;
 		}
 
@@ -59,14 +62,9 @@ namespace HutongGames.PlayMaker.Actions
 			if(delay.Value < 0.001f)
 			{
 				Fsm.Event(eventTarget, sendEvent);
-				if(!everyFrame)
-				{
-					Finish();
-				}
+				if(!everyFrame) Finish();
 			} else
-			{
 				delayedEvent = Fsm.DelayedEvent(eventTarget, sendEvent, delay.Value);
-			}
 		}
 
 		public override void OnUpdate()
@@ -75,29 +73,25 @@ namespace HutongGames.PlayMaker.Actions
 
 			if(!everyFrame)
 			{
-				if(DelayedEvent.WasSent(delayedEvent))
-				{
-					Finish();
-				}
+				if(DelayedEvent.WasSent(delayedEvent)) Finish();
 			} else
-			{
 				Fsm.Event(eventTarget, sendEvent);
-			}
 		}
 
 		private void DoSetFsmVariable()
 		{
 			setValue.UpdateValue();
-			if(setValue.IsNone || string.IsNullOrEmpty(variableName.Value))
-			{
-				return;
-			}
+			if(setValue.IsNone || string.IsNullOrEmpty(variableName.Value)) return;
 
 			var go = Fsm.GetOwnerDefaultTarget(eventTarget.gameObject);
 
-			if(go == null)
+			if(!go) return;
+
+			if(enable.Value)
 			{
-				return;
+				go.SetActive(true);
+				if(eventTarget.fsmComponent != null)
+					eventTarget.fsmComponent.enabled = true;
 			}
 
 			string fsmName = eventTarget.fsmName.Value;
@@ -105,10 +99,9 @@ namespace HutongGames.PlayMaker.Actions
 			if(go != cachedGameObject || fsmName != cachedFsmName)
 			{
 				targetFsm = ActionHelpers.GetGameObjectFsm(go, fsmName);
-				if(targetFsm == null)
-				{
-					return;
-				}
+
+				if(targetFsm == null) return;
+
 				cachedGameObject = go;
 				cachedFsmName = fsmName;
 			}
