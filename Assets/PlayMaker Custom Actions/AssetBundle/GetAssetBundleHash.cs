@@ -11,6 +11,11 @@ namespace HutongGames.PlayMaker.Actions
 	[Tooltip("Get the hash for the given AssetBundle, and its isValid value.")]
 	public class GetAssetBundleHashIsValid : FsmStateAction
 	{
+		
+		[ObjectType(typeof(AssetBundle))]
+		[Tooltip("the AssetBundle")]
+		public FsmObject assetBundle;
+
 		[Tooltip("Name of the asset bundle.")]
 		public FsmString assetBundleName;
 
@@ -32,9 +37,21 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			Hash128 _hash =	AssetBundleManifest.GetAssetBundleHash (assetBundleName.Value);
+			bool _isValid = false;
 
-			bool _isValid = _hash != null && _hash.isValid;
+			AssetBundle _ab = assetBundle.Value as AssetBundle;
+			if (assetBundle != null)
+			{
+				AssetBundleManifest _m = (AssetBundleManifest)_ab.LoadAsset<AssetBundleManifest> ("assetbundlemanifest");
+
+				if (_m != null)
+				{
+					Hash128 _hash = _m.GetAssetBundleHash (assetBundleName.Value);
+
+					_isValid = _hash != null && _hash.isValid;
+				}
+
+			}
 
 			isValid.Value = _isValid;
 
