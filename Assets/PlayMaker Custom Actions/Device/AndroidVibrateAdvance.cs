@@ -138,10 +138,14 @@ namespace HutongGames.PlayMaker.Actions
 
 		public static void Vibrate()
 		{
-			if (isAndroid())
-				vibrator.Call("vibrate");
+			if (isAndroid ())
+				vibrator.Call ("vibrate");
 			else
-				Handheld.Vibrate();
+			{
+				#if UNITY_IPHONE || UNITY_ANDROID
+				Handheld.Vibrate ();
+				#endif
+			}
 		}
 		
 		
