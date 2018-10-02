@@ -7,64 +7,57 @@ using System;
 
 namespace HutongGames.PlayMaker.Actions
 {
+    [ActionCategory(ActionCategory.Time)]
+    [Tooltip("Read a epoch timestamp (Unix)")]
+    [HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=13541.0")]
+    public class ReadEpoch : FsmStateAction
+    {
+        [ActionSection("Input")]
+        [Tooltip("Unix epoch/timestamp")]
+        public FsmInt getEpoch;
 
-[ActionCategory(ActionCategory.Time)]
-[Tooltip("Read a epoch timestamp (Unix)")]
-[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=13541.0")]
-public class ReadEpoch : FsmStateAction
-{
-		[ActionSection("Input")]
-		[Tooltip("Unix epoch/timestamp")]
-		public FsmInt getEpoch;
+        public bool everyFrame;
 
-		[ActionSection("Output")]
-		[UIHint(UIHint.Variable)]
-		[Tooltip("Store epoch / timestamp as a string.")]
-		public FsmString dateTime;
-		[Tooltip("Optional format string. E.g., MM/dd/yyyy HH:mm")]
-		public FsmString format;
-		[Tooltip("Convert to local time")]
-		public FsmBool localTime;
+        [ActionSection("Output")]
+        [UIHint(UIHint.Variable)]
+        [Tooltip("Store epoch / timestamp as a string.")]
+        public FsmString dateTime;
+        [Tooltip("Optional format string. E.g., MM/dd/yyyy HH:mm")]
+        public FsmString format;
+        [Tooltip("Convert to local time")]
+        public FsmBool localTime;
 
-		public override void Reset()
-		{
-			
-			getEpoch = null;
-			dateTime = null;
-			localTime  = false;
-			format = "MM/dd/yyyy HH:mm";
-		}
+        public override void Reset()
+        {
+            getEpoch = null;
+            dateTime = null;
+            localTime = false;
+            format = "MM/dd/yyyy HH:mm";
+        }
 
-	public override void OnEnter()
-	{
-			
+        public override void OnEnter()
+        {
+            ReadEpochTime();
+            if (!everyFrame) Finish();
+        }
 
-			if(localTime.Value == true)
-			{	
-				dateTime.Value = epochSTringLocal(getEpoch.Value);
-			}
+        public override void OnUpdate()
+        {
+            ReadEpochTime();
+        }
 
-			else {
-
-				dateTime.Value = epochSTring(getEpoch.Value);
-			}
-
-		Finish();
-	}
-
-
-
-	private string epochSTring (int epoch)
-		{
-			return new DateTime(1970, 1, 1,0,0,0,DateTimeKind.Utc).AddSeconds(epoch).ToString(format.Value);
-		}
-
-	private string epochSTringLocal (int epoch)
-		{
-			var t = new DateTime(1970, 1, 1,0,0,0,DateTimeKind.Utc).AddSeconds(epoch);
-			return TimeZone.CurrentTimeZone.ToLocalTime(t).ToString(format.Value);
-		}
+        void ReadEpochTime()
+        {
+            if (localTime.Value == true)
+            {
+                var t = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds((int)getEpoch.Value);
+                dateTime.Value = TimeZone.CurrentTimeZone.ToLocalTime(t).ToString(format.Value);
+            }
+            else
+            {
+                DateTime unixDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                dateTime.Value = unixDateTime.AddSeconds((int)getEpoch.Value).ToString(format.Value);
+            }
+        }
+    }
 }
-
-}
-
