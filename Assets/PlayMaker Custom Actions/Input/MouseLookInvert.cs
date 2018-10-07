@@ -1,4 +1,6 @@
 ﻿// (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
+/*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
+// Made by djay dino
 
 using UnityEngine;
 
