@@ -31,6 +31,8 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("Follow the path it takes (throws Debug.Log's for every GameObject it passes). If there are several Log entries with the same GameObject, it means that the given index is higher than the GameObject has parents or lower than it has children.")]
 		public FsmBool debug;
 
+		private GameObject go;
+
 		public override void Reset()
 		{
 			startingFrom = null;
@@ -43,7 +45,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			var go = Fsm.GetOwnerDefaultTarget(startingFrom);
+			go = Fsm.GetOwnerDefaultTarget(startingFrom);
 
 			if (!go)
 			{
@@ -59,7 +61,7 @@ namespace HutongGames.PlayMaker.Actions
 			Transform trans = go.transform, prevTrans = null, initTrans = trans;
 			
 			//get owner
-			if (index.Value == 0) DebugLevel(0, Owner.name);
+			if (index.Value == 0) DebugLevel(0, go.name);
 
 			//get parent (ascending)
 			if(index.Value > 0)
@@ -104,7 +106,7 @@ namespace HutongGames.PlayMaker.Actions
 		void DebugLevel(int index, string goName)
 		{
 			if (debug.Value)
-				Debug.Log(Owner.name + " - Level " + index + ": " + goName);
+				Debug.Log(go.name + " - Level " + index + ": " + goName);
 		}
 	}
 }
