@@ -29,7 +29,6 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmBool everyFrame;
 
 		private char[] tmpChar;
-		private string tmpString;
 		private string stringToModify;
 
 		public override void Reset()
@@ -40,7 +39,6 @@ namespace HutongGames.PlayMaker.Actions
 			leaveEmpty = false;
 			everyFrame = false;
 			tmpChar = null;
-			tmpString = null;
 			stringToModify = null;
 		}
 

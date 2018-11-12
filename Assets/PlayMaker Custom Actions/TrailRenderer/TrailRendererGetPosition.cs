@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	[ActionCategory("Shuriken/TrailModule")]
+	[ActionCategory("Shuriken/TrailRenderer")]
 	[Tooltip("Get the position of a vertex of a particleSystem's TrailRenderer ( Shuriken)")]
 	public class TrailRendererGetPosition : FsmStateAction
 	{

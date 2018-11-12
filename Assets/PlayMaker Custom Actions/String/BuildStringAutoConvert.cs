@@ -36,7 +36,6 @@ namespace HutongGames.PlayMaker.Actions
 		private bool m_isStringGenerated = false;
 		private int m_charsCount = 0;
 		private int m_charsCapacity = 0;
-		private int prevStrPartsLength = 0;
 
 		public override void Reset()
 		{

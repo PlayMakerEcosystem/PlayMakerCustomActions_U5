@@ -73,6 +73,12 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				Fsm.Event(eventTarget, sendEvent);
 			}
+
+			if (DelayedEvent.WasSent(delayedEvent))
+			{
+				Finish();
+			}
+
 		}
 	}
 }
