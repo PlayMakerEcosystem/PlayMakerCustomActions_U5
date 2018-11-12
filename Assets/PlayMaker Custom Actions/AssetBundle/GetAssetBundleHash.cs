@@ -48,7 +48,7 @@ namespace HutongGames.PlayMaker.Actions
 				{
 					Hash128 _hash = _m.GetAssetBundleHash (assetBundleName.Value);
 
-					_isValid = _hash != null && _hash.isValid;
+					_isValid = _hash.isValid;
 				}
 
 			}

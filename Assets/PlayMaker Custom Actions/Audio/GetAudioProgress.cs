@@ -31,7 +31,6 @@ namespace HutongGames.PlayMaker.Actions
 		private float time;
 		private float length;
 		private AudioClip _audioClip;
-		private AudioSource audioSource;
 
 		public override void Reset()
 		{
@@ -46,7 +45,6 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				_audioClip = audio.clip as AudioClip;
 				length = _audioClip.length;
-				audioSource = go.GetComponent<AudioSource>();
 			}
 		}
 

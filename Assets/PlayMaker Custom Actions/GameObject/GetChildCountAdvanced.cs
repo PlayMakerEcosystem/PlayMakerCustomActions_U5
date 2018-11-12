@@ -125,7 +125,11 @@ namespace HutongGames.PlayMaker.Actions
 						isActive = currGO.activeSelf;
 						break;
 					case ActiveType.Active:
+					#if UNITY_5_3_OR_NEWER
+						isActive = currGO.activeInHierarchy;
+					#else
 						isActive = currGO.active;
+					#endif
 						break;
 					default:
 						break;
