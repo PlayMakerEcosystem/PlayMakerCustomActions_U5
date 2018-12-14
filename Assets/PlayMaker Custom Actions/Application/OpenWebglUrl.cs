@@ -3,7 +3,7 @@
 EcoMetaStart
 {
 "script dependancies":[
-                        "Assets/PlayMaker Custom Plugins/Plugins/WebGL/PlayMakerOpenWindow"
+                        "Assets/PlayMaker Custom Plugins/Plugins/WebGL/PlayMakerOpenWindow.jslib"
                       ]
 }
 EcoMetaEnd
