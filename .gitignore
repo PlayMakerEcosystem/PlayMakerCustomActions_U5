@@ -41,3 +41,7 @@ AssetUsageDetector.cs
 AssetUsageDetector.cs.meta
 .idea
 .vs
+Assets/WoLfulus
+Assets/Plugins/Editor/JetBrains
+JetBrains.meta
+WoLfulus.meta
