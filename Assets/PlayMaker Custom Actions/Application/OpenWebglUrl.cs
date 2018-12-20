@@ -1,4 +1,4 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2018. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2018. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__
 EcoMetaStart
 {
@@ -18,7 +18,6 @@ namespace HutongGames.PlayMaker.Actions
     [Tooltip("Opens a new browser window for a given url, works only in Webgl")]
     public class OpenWebglWindow : FsmStateAction
     {
-
         [Tooltip("The Url to open")]
         public FsmString url;
 
