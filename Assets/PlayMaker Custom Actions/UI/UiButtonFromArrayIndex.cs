@@ -14,8 +14,8 @@ namespace HutongGames.PlayMaker.Actions
 
         //[RequiredField]
         [UIHint(UIHint.Variable)]
-        [ArrayEditor(VariableType.Unknown)]
-        [Tooltip("The Array Variable to use.")]
+        [ArrayEditor(VariableType.GameObject)]
+        [Tooltip("The Array Variable to use. This need to be the gameobjects with the Button component")]
         public FsmArray buttonArray;
 
         [Tooltip("Where to send the events.")]
@@ -113,6 +113,7 @@ namespace HutongGames.PlayMaker.Actions
             clickIndex.Value = index;
 
             Fsm.Event(eventTarget, clickEvent);
+            Finish();
         }
     }
 }
