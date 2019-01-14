@@ -10,7 +10,7 @@ namespace HutongGames.PlayMaker.Actions
 	[ActionCategory(ActionCategory.String)]
 	[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=15458.0")]
 	[Tooltip("Concatenates two Strings with each other.")]
-	public class StringAppend : FsmStateAction
+	public class StringAppend2 : FsmStateAction
 	{
 		[RequiredField]
 		[Tooltip("The String to add to.")]
