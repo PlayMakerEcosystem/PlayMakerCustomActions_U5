@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Device)]
-	[Tooltip("Sends an event if a touch input does not hit a gui element.")]
+	[Tooltip("Sends an event if a touch input does not hit a gui element. It also work with the left mouse")]
 	public class TouchEventNotOnUGui : FsmStateAction
 	{
 		[Tooltip("Event to send when the touch is over an uGui object.")]
@@ -36,20 +36,41 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnLateUpdate()
 		{
-			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
-				
-				if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch (0).fingerId)) {
-					isPointerOverUI.Value = false;
-					Fsm.Event(pointerNotOverUI);
-					
-				} 
-				
-				else {
-					isPointerOverUI.Value = true;
-					Fsm.Event(pointerOverUI);
-							
-				}
-			}
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    isPointerOverUI.Value = false;
+                    Fsm.Event(pointerNotOverUI);
+
+                }
+                else
+                {
+                    isPointerOverUI.Value = true;
+                    Fsm.Event(pointerOverUI);
+
+                }
+            }
+            else
+            {
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+
+                    if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                    {
+                        isPointerOverUI.Value = false;
+                        Fsm.Event(pointerNotOverUI);
+
+                    }
+                    else
+                    {
+                        isPointerOverUI.Value = true;
+                        Fsm.Event(pointerOverUI);
+
+                    }
+                }
+            }
 			
 		}
 	}
