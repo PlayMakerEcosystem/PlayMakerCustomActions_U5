@@ -9,7 +9,7 @@ namespace HutongGames.PlayMaker.Actions
 {
     [ActionCategory(ActionCategory.Physics)]
     [Tooltip("Allows to change Body Type and Simulated parameters of Rigidbody.")]
-    public class SetRigidBodyType2D : ComponentAction<Rigidbody>
+    public class SetRigidBodyType2D : ComponentAction<Rigidbody2D>
     {
         [RequiredField]
         [CheckForComponent(typeof(Rigidbody2D))]
@@ -27,9 +27,6 @@ namespace HutongGames.PlayMaker.Actions
 
         public FsmBool simulated;
 
-        private GameObject go;
-        private Rigidbody2D rb;
-
         public override void Reset()
         {
             gameObject = null;
@@ -38,13 +35,14 @@ namespace HutongGames.PlayMaker.Actions
         }
         public override void OnEnter()
         {
-            go = Fsm.GetOwnerDefaultTarget(gameObject);
-            rb = go.GetComponent<Rigidbody2D>();
-
-            rb.simulated = simulated.Value;
-            if (bodyType != BodyType.DontChange)
+            if (this.UpdateCache(Fsm.GetOwnerDefaultTarget(gameObject)))
             {
-                rb.bodyType = (RigidbodyType2D)bodyType;
+             
+                this.cachedComponent.simulated = simulated.Value;
+                if (bodyType != BodyType.DontChange)
+                {
+                    this.cachedComponent.bodyType = (RigidbodyType2D)bodyType;
+                }
             }
             Finish();
         }
