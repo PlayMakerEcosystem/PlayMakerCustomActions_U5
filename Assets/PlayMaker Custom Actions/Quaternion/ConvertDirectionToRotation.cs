@@ -25,7 +25,6 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("The up direction")]
         public FsmVector3 upVector;
 
-        [RequiredField]
         [UIHint(UIHint.Variable)]
         [Tooltip("Store the the rotation variable.")]
         public FsmQuaternion result;
