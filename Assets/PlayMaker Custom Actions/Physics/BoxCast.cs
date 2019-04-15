@@ -26,14 +26,12 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("Rotation of the box.")]
         public FsmQuaternion orientation;
 
-        [Tooltip("The max length of the cast.")]
+        [Tooltip("The max length of the cast. set to none for infinite")]
         public FsmFloat maxDistance;
 
-        [Tooltip("The length of the ray. Set to -1 for infinity.")]
-        private FsmFloat distance;
-
-        [Tooltip("Set to true to ignore colliders set to trigger.")]
-        public FsmBool ignoreTriggerColliders;
+        [Tooltip("Select how to deal with colliders set to trigger.")]
+        [ObjectType(typeof(QueryTriggerInteraction))]
+        public FsmEnum triggerInteraction;
 
         [ActionSection("Result")]
 
@@ -86,16 +84,20 @@ namespace HutongGames.PlayMaker.Actions
         public FsmBool debug;
 
 
+        RaycastHit hitInfo;
 
         int repeat;
+
+        float _distance;
 
         public override void Reset()
         {
             fromGameObject = null;
             
             direction = new FsmVector3 { UseVariable = true };
-          
-            
+
+            maxDistance = new FsmFloat() { UseVariable = true };
+
             hitEvent = null;
             noHitEvent = null;
             storeDidHit = null;
@@ -108,11 +110,11 @@ namespace HutongGames.PlayMaker.Actions
             invertMask = false;
             debugColor = Color.yellow;
             debug = false;
-            ignoreTriggerColliders = false;
+            triggerInteraction = QueryTriggerInteraction.UseGlobal;
             halfExtents = null;
             direction = null;
             orientation = null;
-            maxDistance = null;
+       
         
 
         }
@@ -136,20 +138,23 @@ namespace HutongGames.PlayMaker.Actions
         {
             center = Fsm.GetOwnerDefaultTarget(fromGameObject).transform.position;
 
-            RaycastHit hitInfo;
+            _distance = maxDistance.IsNone ? Mathf.Infinity : maxDistance.Value;
 
-            if (ignoreTriggerColliders.Value == true)
-            {             
-                Physics.BoxCast(center, halfExtents.Value, direction.Value, out hitInfo, orientation.Value = Quaternion.identity, maxDistance.Value, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), QueryTriggerInteraction.Ignore);
-            } 
-            else
-            {            
-                Physics.BoxCast(center, halfExtents.Value, direction.Value,out hitInfo, orientation.Value = Quaternion.identity, maxDistance.Value, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), QueryTriggerInteraction.Collide);
-            }
+            Physics.BoxCast(center, halfExtents.Value, direction.Value, out hitInfo, orientation.Value = Quaternion.identity, _distance, ActionHelpers.LayerArrayToLayerMask(layerMask, invertMask.Value), (QueryTriggerInteraction)triggerInteraction.Value);
+          
 
             Fsm.RaycastHitInfo = hitInfo;
             var didHit = hitInfo.collider != null;
             storeDidHit.Value = didHit;
+
+            if (debug.Value)
+            {
+
+                Debug.DrawLine(center, center+direction.Value*(Mathf.Min(10000f,_distance)), debugColor.Value);
+                Debug.DrawLine(center + halfExtents.Value, center + halfExtents.Value + direction.Value * (Mathf.Min(10000f, _distance)), debugColor.Value);
+                Debug.DrawLine(center - halfExtents.Value, center - halfExtents.Value + direction.Value * (Mathf.Min(10000f, _distance)), debugColor.Value);
+            }
+
 
             if (didHit)
             {
@@ -159,8 +164,12 @@ namespace HutongGames.PlayMaker.Actions
                 storeHitDistance.Value = Fsm.RaycastHitInfo.distance;
                 Fsm.Event(hitEvent);
             }
+            else
+            {
+                Fsm.Event(noHitEvent);
+            }
 
-           
+
 
         }
     }
