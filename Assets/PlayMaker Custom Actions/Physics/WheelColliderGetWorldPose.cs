@@ -87,7 +87,7 @@ namespace HutongGames.PlayMaker.Actions
 				rotation.Value = _rotation;
 			}
 
-			_dummy = Fsm.GetOwnerDefaultTarget(gameObject);
+			_dummy = Fsm.GetOwnerDefaultTarget(transform);
 			if (_dummy!=null)
 			{
 				_dummy.transform.position = _position;
