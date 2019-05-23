@@ -13,7 +13,6 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Camera)]
 	[Tooltip("Cross fade between two camera using RenderTexture")]
-	[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=11308.0")]
 	public class CameraCrossFadePro : FsmStateAction
 	{
 		[ActionSection("Camera")]
