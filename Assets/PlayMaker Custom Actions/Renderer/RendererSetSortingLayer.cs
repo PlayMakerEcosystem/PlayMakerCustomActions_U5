@@ -1,17 +1,17 @@
 // (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
-using UnityEngine.Rendering;
+using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
 
 	[ActionCategory("Sprites")]
-	public class SpriteSetOrderLayer : ComponentAction<SortingGroup>
+	public class RendererSetSortingLayer : ComponentAction<Renderer>
 	{
 
         [RequiredField]
-        [CheckForComponent(typeof(SortingGroup))]
+        [CheckForComponent(typeof(Renderer))]
         [Tooltip("The GameObject with the SortingGroup attached.")]
         public FsmOwnerDefault gameObject;
 
