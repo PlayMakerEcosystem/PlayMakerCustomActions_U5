@@ -82,7 +82,7 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			if (!sortingLayerName.IsNone && !orSortingLayerID.IsNone)
 			{
-				return "sortingLayerName will be ignore, because orSortingLayerID is set";
+				return "sortingLayerName will be ignored, because orSortingLayerID is set";
 			}
 			
 			return base.ErrorCheck();
