@@ -1,5 +1,6 @@
 // License: Attribution 4.0 International (CC BY 4.0)
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
+// Keywords: Multiplier Bool
 // Made by Thore. Use for whatever nefarious purpose you like.
 
 namespace HutongGames.PlayMaker.Actions
