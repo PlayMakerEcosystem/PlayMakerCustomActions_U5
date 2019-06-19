@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
-    [ActionCategory(ActionCategory.Vector2)]
+    [ActionCategory(ActionCategory.Convert)]
     [Tooltip("Store a Vector2 XY components into a Vector3 XY component. The Vector3 z component is also accessible for convenience")]
-    public class Vector2ToVector3 : FsmStateAction
+    public class ConvertVector2ToVector3 : FsmStateAction
     {
 
         [UIHint(UIHint.Variable)]
