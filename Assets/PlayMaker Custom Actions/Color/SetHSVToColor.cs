@@ -23,6 +23,10 @@ namespace HutongGames.PlayMaker.Actions
         [HasFloatSlider(0,1)]
 		public FsmFloat brightness;
 
+        [Tooltip("The alpha value")]
+        [HasFloatSlider(0, 1)]
+        public FsmFloat alpha;
+
         [RequiredField]
         [Tooltip("Output HDR colours. If true, the returned colour will not be clamped to [0..1].")]
         public FsmBool hdr;
@@ -44,6 +48,7 @@ namespace HutongGames.PlayMaker.Actions
 			saturation = 0;
 			brightness = 0;
             hdr = false;
+            alpha = new FsmFloat() { UseVariable = true };
 
             everyFrame = false;
 		}
@@ -63,7 +68,16 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoSetHSVToRGBA()
 		{
-            colorVariable.Value = Color.HSVToRGB(hue.Value, saturation.Value, brightness.Value, hdr.Value);
-		}
+            var newColor = Color.HSVToRGB(hue.Value, saturation.Value, brightness.Value, hdr.Value);
+
+            if (!alpha.IsNone)
+            {
+                newColor.a = alpha.Value;
+            }
+
+
+                colorVariable.Value = newColor;
+
+        }
 	}
 }
