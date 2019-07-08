@@ -1,4 +1,7 @@
-﻿using System;
+﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
+/*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
+
+using System;
 using System.Globalization;
 
 namespace HutongGames.PlayMaker.Actions
@@ -24,8 +27,6 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("Store result date and time as a string.")]
 		public FsmString storeString;
 		
-        
-
 		CultureInfo provider = CultureInfo.InvariantCulture;
 		
 		public override void Reset()
@@ -41,18 +42,11 @@ namespace HutongGames.PlayMaker.Actions
             
             DateTime _startDate = DateTime.ParseExact(startDate.Value, dateFormat.Value, provider);
 
-            //this works
-           // _startDate = _startDate.Add(System.TimeSpan.FromSeconds(100));       
-
-
-            //but if I try to add the int variable like so
             _startDate = _startDate.Add(System.TimeSpan.FromSeconds((int)add.Value));
 
-            // then it gives an error:
-            //  Assets / PlayMaker / Actions / Time / AddToDateTime.cs(41, 69): error CS1503: Argument `#1' cannot convert `HutongGames.PlayMaker.FsmInt' expression to type `double'
-            // how do I fix this?
-
             storeString.Value = _startDate.ToString(dateFormat.Value);
+			
+			Finish();
       	}
 
 #if UNITY_EDITOR
