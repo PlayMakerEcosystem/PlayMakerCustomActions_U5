@@ -1,4 +1,4 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2016. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
 using UnityEngine.Analytics;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("Analytics")]
-	[Tooltip("Sets the gender of the user. Depending on the genre of your project, creating custom segments around gender and age of your users may interest you. Whether you're receiving this information on signup of your project, or from a third-party SDK, eg: Facebook, you can send these demographics to Unity Analytics.")]
+	[Tooltip("Unity Analytics allows you to track specific events within your game. By configuring a series of Custom Events within your game, you can create your own Funnel Analysis to observe your players' game behavior. Good places to put custom events include: milestones, new levels, scene transitions, etc.")]
 	public class AnalyticsSendCustomEvent : FsmStateAction
 	{
 		[RequiredField]
