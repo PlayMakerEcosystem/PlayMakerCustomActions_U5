@@ -9,7 +9,7 @@ namespace HutongGames.PlayMaker.Actions
 	[Tooltip("The counterpart to 'PlatformDependentEvents'. Sends an Event if or if not on the specified Platforms.")]
 	public class IsOnPlatformEvent : FsmStateAction
 	{
-		public enum platformDependentFlags
+		public enum PlatformDependentFlags
 		{
 			UNITY_EDITOR,
 			UNITY_EDITOR_WIN,
@@ -40,7 +40,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		[RequiredField]
 		[Tooltip("The platforms")]
-		public platformDependentFlags[] platforms;
+		public PlatformDependentFlags[] platforms;
 
 		[Tooltip("The event to send IF on any of the specified platforms. Note: Gets send on the first platform it finds it is on.")]
 		public FsmEvent onEvent;
@@ -76,8 +76,8 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void Reset()
 		{
-			platforms = new platformDependentFlags[1];
-			platforms[0] = platformDependentFlags.UNITY_WEBPLAYER;
+			platforms = new PlatformDependentFlags[1];
+			platforms[0] = PlatformDependentFlags.UNITY_WEBPLAYER;
 			onEvent = null;
 			notOnEvent = null;
 		}
@@ -85,14 +85,14 @@ namespace HutongGames.PlayMaker.Actions
 		public override void OnEnter()
 		{
 
-			foreach(platformDependentFlags _flag in platforms)
+			foreach(PlatformDependentFlags _flag in platforms)
 			{
 #if UNITY_EDITOR
-				if(_flag == platformDependentFlags.UNITY_EDITOR) isOnEditor = true;
+				if(_flag == PlatformDependentFlags.UNITY_EDITOR) isOnEditor = true;
 #endif
 
 #if UNITY_EDITOR_WIN
-				if(_flag == platformDependentFlags.UNITY_EDITOR_WIN) isOnEditorWin = true;
+				if(_flag == PlatformDependentFlags.UNITY_EDITOR_WIN) isOnEditorWin = true;
 #endif
 
 #if UNITY_EDITOR_OSX
@@ -108,7 +108,7 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_STANDALONE_WIN
-				if(_flag == platformDependentFlags.UNITY_STANDALONE_WIN) isOnStandaloneWin = true;
+				if(_flag == PlatformDependentFlags.UNITY_STANDALONE_WIN) isOnStandaloneWin = true;
 #endif
 
 #if UNITY_STANDALONE_LINUX
@@ -116,7 +116,7 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_STANDALONE
-				if(_flag == platformDependentFlags.UNITY_STANDALONE) isOnStandalone = true;
+				if(_flag == PlatformDependentFlags.UNITY_STANDALONE) isOnStandalone = true;
 #endif
 
 #if UNITY_WEBPLAYER
