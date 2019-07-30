@@ -96,15 +96,15 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_EDITOR_OSX
-					if(_flag == platformDependentFlags.UNITY_EDITOR_OSX )  isOnEditorOSX = true;
+					if(_flag == PlatformDependentFlags.UNITY_EDITOR_OSX )  isOnEditorOSX = true;
 #endif
 
 #if UNITY_STANDALONE_OSX
-					if(_flag == platformDependentFlags.UNITY_STANDALONE_OSX )  isOnStandaloneOSX = true;
+					if(_flag == PlatformDependentFlags.UNITY_STANDALONE_OSX )  isOnStandaloneOSX = true;
 #endif
 
 #if UNITY_DASHBOARD_WIDGET
-					if(_flag == platformDependentFlags.UNITY_DASHBOARD_WIDGET )  isOnDashboardWidget = true;
+					if(_flag == PlatformDependentFlags.UNITY_DASHBOARD_WIDGET )  isOnDashboardWidget = true;
 #endif
 
 #if UNITY_STANDALONE_WIN
@@ -112,7 +112,7 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_STANDALONE_LINUX
-					if(_flag == platformDependentFlags.UNITY_STANDALONE_LINUX )  isOnStandaloneLinux = true;
+					if(_flag == PlatformDependentFlags.UNITY_STANDALONE_LINUX )  isOnStandaloneLinux = true;
 #endif
 
 #if UNITY_STANDALONE
@@ -120,21 +120,21 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_WEBPLAYER
-					if(_flag == platformDependentFlags.UNITY_WEBPLAYER )  isOnWebplayer = true;
+					if(_flag == PlatformDependentFlags.UNITY_WEBPLAYER )  isOnWebplayer = true;
 #endif
 
 #if UNITY_WII
-					if(_flag == platformDependentFlags.UNITY_WII )  isOnWii = true;
+					if(_flag == PlatformDependentFlags.UNITY_WII )  isOnWii = true;
 #endif
 
 #if UNITY_IPHONE || UNITY_IOS
-					if (Enum.Equals(platforms[i],platformDependentFlags.UNITY_IPHONE ) )
+					if (Enum.Equals(platforms[i],PlatformDependentFlags.UNITY_IPHONE ) )
 					{
 						UnityEngine.Debug.Log("---------- WE FIRE "+onEvent.Name);
 						 isOnIPhone = true;
 						return;
 					}
-					if( Enum.Equals(platforms[i],platformDependentFlags.UNITY_IOS ) )
+					if( Enum.Equals(platforms[i],PlatformDependentFlags.UNITY_IOS ) )
 					{
 						UnityEngine.Debug.Log("---------- WE FIRE "+onEvent.Name);
 						 isOnIOS = true;
@@ -143,55 +143,55 @@ namespace HutongGames.PlayMaker.Actions
 #endif
 
 #if UNITY_ANDROID
-					if(_flag == platformDependentFlags.UNITY_ANDROID )  isOnAndroid = true;
+					if(_flag == PlatformDependentFlags.UNITY_ANDROID )  isOnAndroid = true;
 #endif
 
 #if UNITY_PS3
-					if(_flag == platformDependentFlags.UNITY_PS3 )  isOnPS3 = true;
+					if(_flag == PlatformDependentFlags.UNITY_PS3 )  isOnPS3 = true;
 #endif
 
 #if UNITY_XBOX360
-					if(_flag == platformDependentFlags.UNITY_XBOX360 )  isOnXBOX360 = true;
+					if(_flag == PlatformDependentFlags.UNITY_XBOX360 )  isOnXBOX360 = true;
 #endif
 
 #if UNITY_NACL
-					if(_flag == platformDependentFlags.UNITY_NACL )  isOnNACL = true;
+					if(_flag == PlatformDependentFlags.UNITY_NACL )  isOnNACL = true;
 #endif
 
 #if UNITY_FLASH
-					if(_flag == platformDependentFlags.UNITY_FLASH )  isOnFlash = true;
+					if(_flag == PlatformDependentFlags.UNITY_FLASH )  isOnFlash = true;
 #endif
 
 #if UNITY_BLACKBERRY
-					if(_flag == platformDependentFlags.UNITY_BLACKBERRY )  isOnBlackberry = true;
+					if(_flag == PlatformDependentFlags.UNITY_BLACKBERRY )  isOnBlackberry = true;
 #endif
 
 #if UNITY_WP8
-					if(_flag == platformDependentFlags.UNITY_WP8 )  isOnWP8 = true;
+					if(_flag == PlatformDependentFlags.UNITY_WP8 )  isOnWP8 = true;
 #endif
 
 #if UNITY_METRO
-					if(_flag == platformDependentFlags.UNITY_METRO )  isOnMetro = true;
+					if(_flag == PlatformDependentFlags.UNITY_METRO )  isOnMetro = true;
 #endif
 
 #if UNITY_WINRT
-					if(_flag == platformDependentFlags.UNITY_WINRT )  isOnWinRT = true;
+					if(_flag == PlatformDependentFlags.UNITY_WINRT )  isOnWinRT = true;
 #endif
 
 #if UNITY_PS4
-					if(_flag == platformDependentFlags.UNITY_PS4 )  isOnPS4 = true;
+					if(_flag == PlatformDependentFlags.UNITY_PS4 )  isOnPS4 = true;
 #endif
 
 #if UNITY_XBOXONE
-					if(_flag == platformDependentFlags.UNITY_XBOXONE )  isOnXBoxOne = true;
+					if(_flag == PlatformDependentFlags.UNITY_XBOXONE )  isOnXBoxOne = true;
 #endif
 
 #if UNITY_TIZEN
-					if(_flag == platformDependentFlags.UNITY_TIZEN )  isOnTizen = true;
+					if(_flag == PlatformDependentFlags.UNITY_TIZEN )  isOnTizen = true;
 #endif
 
 #if UNITY_WEBGL
-					if(_flag == platformDependentFlags.UNITY_WEBGL )  isOn = true;
+					if(_flag == PlatformDependentFlags.UNITY_WEBGL )  isOn = true;
 #endif
 			}
 
