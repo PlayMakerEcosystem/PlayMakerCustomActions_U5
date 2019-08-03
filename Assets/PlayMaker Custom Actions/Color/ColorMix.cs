@@ -1,4 +1,4 @@
-// (c) Copyright HutongGames, LLC 2010-2018. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 // Made by: Thore http://hutonggames.com/playmakerforum/index.php?topic=19454.0
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 using UnityEngine;
