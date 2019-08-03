@@ -1,4 +1,4 @@
-// (c) Copyright HutongGames, LLC 2010-2015. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 // no eco flag, it's already define in u4 repositiory
 
 using UnityEngine;

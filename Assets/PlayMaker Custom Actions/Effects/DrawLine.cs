@@ -1,4 +1,4 @@
-// (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 
 // DrawLine.cs version 1.1
 // http://hutonggames.com/playmakerforum/index.php?topic=3943.0

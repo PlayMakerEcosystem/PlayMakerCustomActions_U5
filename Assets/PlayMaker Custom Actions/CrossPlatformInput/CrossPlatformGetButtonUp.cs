@@ -1,4 +1,4 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2015. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 // original actions from KellyRay: http://hutonggames.com/playmakerforum/index.php?topic=11224.msg52975#msg52975
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
