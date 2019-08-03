@@ -33,7 +33,6 @@ namespace HutongGames.PlayMaker.Actions
 
 		private Texture tex;
 		private RenderTexture renderTex;
-		private Texture2D tex2D;
 		private float alpha;
 		private bool  reEnableListener;
 		private bool isWorking;
