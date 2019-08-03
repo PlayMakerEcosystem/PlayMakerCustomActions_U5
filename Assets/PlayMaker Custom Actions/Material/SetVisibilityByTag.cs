@@ -1,4 +1,4 @@
-// (c) Copyright HutongGames, LLC 2010-2015. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 // original action http://hutonggames.com/playmakerforum/index.php?topic=10092.msg47749#msg47749
 

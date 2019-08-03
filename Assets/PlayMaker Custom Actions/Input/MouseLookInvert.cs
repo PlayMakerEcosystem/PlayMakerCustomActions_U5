@@ -1,4 +1,4 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2013. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 // Made by djay dino
 
@@ -8,7 +8,6 @@ namespace HutongGames.PlayMaker.Actions
 {
     /// <summary>
     /// Action version of Unity's builtin MouseLook behaviour.
-    /// TODO: Expose invert Y option.
     /// </summary>
     [ActionCategory(ActionCategory.Input)]
     [Tooltip("Rotates a GameObject based on mouse movement. Minimum and Maximum values can be used to constrain the rotation.")]
