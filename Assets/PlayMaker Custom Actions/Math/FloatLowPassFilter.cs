@@ -1,4 +1,4 @@
-// (c) Copyright HutongGames, LLC 2010-2016. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
 using UnityEngine;
@@ -17,7 +17,7 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("Determines how much influence new changes have. E.g., 0.1 keeps 10 percent of the unfiltered vector and 90 percent of the previously filtered value")]
 		public FsmFloat filteringFactor;		
 		
-		float filteredFloat;
+		private float filteredFloat;
 		
 		public override void Reset()
 		{
