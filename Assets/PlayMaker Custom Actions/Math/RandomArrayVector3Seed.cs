@@ -11,7 +11,6 @@ namespace HutongGames.PlayMaker.Actions
 	[Tooltip("Sets a Float Variable to a random value between Min/Max.")]
 	public class RandomArrayVector3Seed: FsmStateAction
 	{    
-        private FsmInt index;
         [RequiredField]
 		public FsmInt maxindex;
 		[RequiredField]
