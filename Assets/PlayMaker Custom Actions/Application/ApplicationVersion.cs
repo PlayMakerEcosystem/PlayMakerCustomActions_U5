@@ -8,33 +8,46 @@ using System.Collections;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Application)]
-	[Tooltip("gets the mobile application version and place into a string")]
+	[Tooltip("Gets the Application version and can optionnaly format it inside a string")]
 	public class ApplicationVersion : FsmStateAction
 	{
-        [Tooltip("add an optional pre text, for example 'Alpha Version'")]
-        public FsmString versionName;
+        [Tooltip("optional format text, use {0} as the replacement tag, Leave to non for no effect")]
+        public FsmString format;
 
         [RequiredField]
         [UIHint(UIHint.Variable)]
-        public FsmString store;
+        public FsmString version;
 
 
         public override void Reset()
 		{
-            store = null;
-            versionName = new FsmString() { UseVariable = true };
-        }
+			format = new FsmString() { UseVariable = true };
+			version = null;
+		}
 
 		public override void OnEnter()
 		{
-#if (UNITY_IPHONE || UNITY_IOS || UNITY_ANDROID || UNITY_EDITOR)
-			    store.Value = Application.version;
 
-            if (versionName != null) store.Value = versionName.Value + " " + store.Value;
-#else
-            store.Value = "This is not a mobile" ;
-#endif
-                Finish();
+
+			if (format.Value.Contains("{0}"))
+			{
+				version.Value = string.Format(Application.version, format);
+			}
+			else
+			{
+				version.Value = Application.version;
+			}
+            
+            Finish();
+		}
+
+		public override string ErrorCheck()
+		{
+			if (!string.IsNullOrEmpty(format.Value) && !format.Value.Contains("{0}"))
+			{
+				return "format must contains {0} as the replacement tag";
+			}
+			return "";
 		}
 	}
 }
