@@ -32,13 +32,13 @@ namespace HutongGames.PlayMaker.Actions
 
 		//contains all IDs of changed GameObjects to accurately reset each on exit
 		private List<int> changedEntries = new List<int>();
-		private int prevAmount = 0;
+		private int prevAmount;
 
 		public override void Reset()
 		{
 			gameObjects = new FsmGameObject[0];
 			enable = new FsmBool[0];
-			applyToAll = new FsmBool() { UseVariable = true };
+			applyToAll = new FsmBool { UseVariable = true };
 			recursive = false;
 			resetOnExit = false;
 		}
@@ -68,29 +68,8 @@ namespace HutongGames.PlayMaker.Actions
 
 			Finish();
 		}
-
-		public override void OnExit()
-		{
-			//skip if not wanting to reset
-			if(!resetOnExit.Value)
-			{
-				return;
-			}
-
-			//reverse active state if it was changed
-			foreach(var entry in changedEntries)
-			{
-				GameObject go = gameObjects[entry].Value;
-				go.SetActive(!go.activeInHierarchy);
-			}
-		}
-
-		public override void OnGUI()
-		{
-			Default();
-		}
-
-		void Default()
+		
+		private void Default()
 		{
 			//if the amount of array entries changes, set the default value to all unchanged entries
 			if(prevAmount != gameObjects.Length)
@@ -103,19 +82,56 @@ namespace HutongGames.PlayMaker.Actions
 						go.UseVariable = true;
 						enable[i].Value = true;
 					}
+					
 					i++;
 				}
 				prevAmount = gameObjects.Length;
 			}
 
-			//sets all 'Enable' bools to the one from 'Enable All', if it's not None
+			//sets all 'Enable' bools to the one from 'Enable All', if it's not None and "unlock" unset GO's
 			if(!applyToAll.IsNone)
 			{
+				foreach(var go in gameObjects)
+				{
+					if(go.IsNone) go.UseVariable = false;
+				}
+
 				foreach(var item in enable)
 				{
 					item.Value = applyToAll.Value;
 				}
+			} else
+			{
+				foreach(var go in gameObjects)
+				{
+					if(go == null)
+						go.UseVariable = true;
+				}
 			}
+		}
+
+		public override void OnExit()
+		{
+			//skip if not wanting to reset
+			if(!resetOnExit.Value) return;
+
+			//reverse active state if it was changed
+			foreach(var entry in changedEntries)
+			{
+				GameObject go = gameObjects[entry].Value;
+				go.SetActive(!go.activeInHierarchy);
+			}
+		}
+
+		//explicitly declare using OnGUI
+		public override void OnPreprocess()
+		{
+			Fsm.HandleOnGUI = true;
+		}
+
+		public override void OnGUI()
+		{
+			Default();
 		}
 	}
 }
