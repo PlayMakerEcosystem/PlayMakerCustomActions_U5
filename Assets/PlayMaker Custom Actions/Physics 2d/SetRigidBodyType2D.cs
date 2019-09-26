@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
-    [ActionCategory(ActionCategory.Physics)]
+    [ActionCategory(ActionCategory.Physics2D)]
     [Tooltip("Allows to change Body Type and Simulated parameters of Rigidbody.")]
     public class SetRigidBodyType2D : ComponentAction<Rigidbody2D>
     {
