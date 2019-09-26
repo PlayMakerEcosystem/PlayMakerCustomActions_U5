@@ -2,6 +2,8 @@
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 // Author : Deek
 
+using UnityEngine;
+
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.GameObject)]
@@ -20,8 +22,12 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("The final GameObject it reached.")]
 		public FsmGameObject storeResult;
 
+		[UIHint(UIHint.Variable)]
 		[Tooltip("The Name of the final GameObject it reached.")]
 		public FsmString storeResultName;
+
+		[Tooltip("Event send if there could be no sibling found at the specified index.")]
+		public FsmEvent notFoundEvent;
 
 		public override void Reset()
 		{
@@ -29,14 +35,38 @@ namespace HutongGames.PlayMaker.Actions
 			index = 1;
 			storeResult = null;
 			storeResultName = null;
+			notFoundEvent = null;
 		}
 
 		public override void OnEnter()
 		{
 			var go = Fsm.GetOwnerDefaultTarget(startingFrom);
-			var currentChildID = go.transform.GetSiblingIndex();
-			currentChildID += index.Value;
-			storeResult.Value = go.transform.parent.GetChild(currentChildID).gameObject;
+
+			int currChildID = go.transform.GetSiblingIndex();
+      currChildID += index.Value;
+
+      Transform parent = go.transform.parent;
+
+      if (parent == null)
+      {
+	      //LogError("Trying to get the sibling of a root object is not allowed!");
+	      Fsm.Event(notFoundEvent);
+      }
+      else
+      {
+	      if (currChildID < 0 || currChildID > parent.childCount - 1) {
+		      //LogError("Specified sibling index is out of bounds!");
+		      Fsm.Event(notFoundEvent);
+	      } else {
+		      if (parent.GetChild(currChildID) != null)
+		      {
+			      storeResult.Value = parent.GetChild(currChildID).gameObject;
+			      storeResultName.Value = storeResult.Value.name;
+		      }
+		      else Fsm.Event(notFoundEvent);
+	      } 
+      }
+
 			Finish();
 		}
 	}
