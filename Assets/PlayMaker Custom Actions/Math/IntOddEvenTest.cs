@@ -20,7 +20,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		public FsmEvent isOddEvent;
 
-		public FsmEvent isEventEvent;
+		public FsmEvent isEvenEvent;
 
 		public bool everyFrame;
 		
@@ -30,7 +30,7 @@ namespace HutongGames.PlayMaker.Actions
 			isOdd = null;
 			isEven = null;
 			isOddEvent = null;
-			isEventEvent = null;
+			isEvenEvent = null;
 			
 			everyFrame = false;
 		}
@@ -64,9 +64,9 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				Fsm.Event(isOddEvent);
 			}
-			if(isEventEvent!=null & !_isOdd)
+			if(isEvenEvent!=null & !_isOdd)
 			{
-				Fsm.Event(isEventEvent);
+				Fsm.Event(isEvenEvent);
 			}
 
 		}
