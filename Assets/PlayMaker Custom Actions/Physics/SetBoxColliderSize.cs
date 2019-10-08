@@ -9,7 +9,7 @@ namespace HutongGames.PlayMaker.Actions
 	[ActionCategory(ActionCategory.Physics)]
 	[Tooltip("Set the size of a Box Collider")]
 	[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=12040.0")]
-	public class SetBoxColliderSize : ComponentAction<Rigidbody>
+	public class SetBoxColliderSize : ComponentAction<BoxCollider>
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(BoxCollider))]
@@ -30,7 +30,7 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmFloat z;
 
         [Tooltip("Repeat every frame while the state is active.")]
-        public FsmBool everyFrame;
+        public bool everyFrame;
 
 		public override void Reset()
 		{
@@ -42,12 +42,18 @@ namespace HutongGames.PlayMaker.Actions
 			everyFrame = false;
 		}
 
-
+		public override void OnPreprocess()
+		{
+			if (everyFrame)
+			{
+				Fsm.HandleFixedUpdate = true;
+			}
+		}
 		public override void OnEnter()
 		{
 			DoChange();
 			
-			if (!everyFrame.Value)
+			if (!everyFrame)
 			{
 				Finish();
 			}		
@@ -60,16 +66,17 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoChange()
 		{
-			var go = Fsm.GetOwnerDefaultTarget(gameObject);
-			BoxCollider collider = go.GetComponent<BoxCollider>();
-
+			if (!UpdateCache(Fsm.GetOwnerDefaultTarget(gameObject)))
+			{
+				return;
+			}
 			var size = vector.IsNone ? new Vector3(x.Value, y.Value, z.Value) : vector.Value;
 
 			if (!x.IsNone) size.x = x.Value;
 			if (!y.IsNone) size.y = y.Value;
 			if (!z.IsNone) size.z = z.Value;
 					
-			collider.size = size;
+			this.cachedComponent.size = size;
 	
 		}
 	}

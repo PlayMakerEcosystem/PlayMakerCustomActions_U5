@@ -60,7 +60,7 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 
-			_wc = (WheelCollider)this.cachedComponent;
+			_wc = this.cachedComponent;
 
 			if (_wc == null)
 			{

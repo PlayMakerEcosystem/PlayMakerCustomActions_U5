@@ -8,7 +8,7 @@ namespace HutongGames.PlayMaker.Actions
 	[ActionCategory(ActionCategory.Physics)]
 	[Tooltip("Set the center of a Sphere Collider")]
 	[HelpUrl("")]
-	public class SetSphereColliderCenter : ComponentAction<Rigidbody>
+	public class SetSphereColliderCenter : ComponentAction<SphereCollider>
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(SphereCollider))]
@@ -29,7 +29,7 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmFloat z;
 
         [Tooltip("Repeat every frame while the state is active.")]
-        public FsmBool everyFrame;
+        public bool everyFrame;
 
 		public override void Reset()
 		{
@@ -41,12 +41,19 @@ namespace HutongGames.PlayMaker.Actions
 			everyFrame = false;
 		}
 
-
+		public override void OnPreprocess()
+		{
+			if (everyFrame)
+			{
+				Fsm.HandleFixedUpdate = true;
+			}
+		}
+		
 		public override void OnEnter()
 		{
 			DoChange();
 			
-			if (!everyFrame.Value)
+			if (!everyFrame)
 			{
 				Finish();
 			}		
@@ -59,18 +66,17 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoChange()
 		{
-			var go = Fsm.GetOwnerDefaultTarget(gameObject);
-			SphereCollider collider = go.GetComponent<SphereCollider>();
-
-
-
+			if (!UpdateCache(Fsm.GetOwnerDefaultTarget(gameObject)))
+			{
+				return;
+			}
 			var center = vector.IsNone ? new Vector3(x.Value, y.Value, z.Value) : vector.Value;
 
 			if (!x.IsNone) center.x = x.Value;
 			if (!y.IsNone) center.y = y.Value;
 			if (!z.IsNone) center.z = z.Value;
 					
-			collider.center = center;
+			this.cachedComponent.center = center;
 	
 		}
 	}

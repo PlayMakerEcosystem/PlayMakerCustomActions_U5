@@ -8,19 +8,18 @@ namespace HutongGames.PlayMaker.Actions
 	[ActionCategory(ActionCategory.Physics)]
 	[Tooltip("Set the size of a Sphere Collider")]
 	[HelpUrl("")]
-	public class SetSphereColliderRadius : ComponentAction<Rigidbody>
+	public class SetSphereColliderRadius : ComponentAction<SphereCollider>
 	{
 		[RequiredField]
 		[CheckForComponent(typeof(SphereCollider))]
         [Tooltip("The GameObject to apply the size to.")]
 		public FsmOwnerDefault gameObject;
-
-
+		
         [Tooltip("Sphere radius")]
 		public FsmFloat radius;
 
         [Tooltip("Repeat every frame while the state is active.")]
-        public FsmBool everyFrame;
+        public bool everyFrame;
 
 		public override void Reset()
 		{
@@ -29,12 +28,19 @@ namespace HutongGames.PlayMaker.Actions
 			everyFrame = false;
 		}
 
+       public override void OnPreprocess()
+        {
+            if (everyFrame)
+            {
+                Fsm.HandleFixedUpdate = true;
+            }
+        }
 
 		public override void OnEnter()
 		{
 			DoChange();
 			
-			if (!everyFrame.Value)
+			if (!everyFrame)
 			{
 				Finish();
 			}		
@@ -47,10 +53,12 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoChange()
 		{
-			var go = Fsm.GetOwnerDefaultTarget(gameObject);
-			SphereCollider collider = go.GetComponent<SphereCollider>();
-					
-			collider.radius = radius.Value;
+			if (!UpdateCache(Fsm.GetOwnerDefaultTarget(gameObject)))
+			{
+				return;
+			}
+			
+			this.cachedComponent.radius = radius.Value;
 	
 		}
 	}
