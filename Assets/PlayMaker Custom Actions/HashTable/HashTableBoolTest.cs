@@ -5,6 +5,7 @@
 // Drop a PlayMakerHashTableProxy script onto a GameObject, and define a unique name for reference if several PlayMakerHashTableProxy coexists on that GameObject.
 // In this Action interface, link that GameObject in "hashTableObject" and input the reference name if defined. 
 // Note: You can directly reference that GameObject or store it in an Fsm variable or global Fsm variable
+/*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
 using UnityEngine;
 
