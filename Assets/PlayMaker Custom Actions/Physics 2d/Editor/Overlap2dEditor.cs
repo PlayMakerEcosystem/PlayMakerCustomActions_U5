@@ -1,4 +1,4 @@
-﻿using HutongGames.PlayMaker.Actions;
+using HutongGames.PlayMaker.Actions;
 using HutongGames.PlayMakerEditor;
 using UnityEditor;
 using UnityEditorInternal;
@@ -38,9 +38,10 @@ namespace HutongGames.PlayMakerEditor
 
             action = target as Overlap2d;
 
-            go = action.Fsm.GetOwnerDefaultTarget(action.position);
+            if (action.Fsm != null)
+                go = action.Fsm.GetOwnerDefaultTarget(action.position);
 
-            
+
             if (go)
             {
                 pos = go.transform.position;
