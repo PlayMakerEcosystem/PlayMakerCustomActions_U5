@@ -16,7 +16,7 @@ using UnityEngine;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.Transform)]
-	[Tooltip("Get a Direction Vector Between two gameobjects, return both 3d or 2d direction, in world or self space")]
+	[Tooltip("Get a Direction Vector Between two gameobjects, return both 3d or 2d direction, in world or self space, direction can be normalized as well")]
 	public class GetDirectionBetweenGameObjects : FsmStateActionAdvanced
 	{
 		[RequiredField]
@@ -30,20 +30,27 @@ namespace HutongGames.PlayMaker.Actions
 		[ActionSection("Result")]
 		[Tooltip("In what reference to express the direction")]
 		public Space space;
+
+		[Tooltip("if true, normalize the direction result")]
+		public bool normalize;
 		
-		[RequiredField]
 		[UIHint(UIHint.Variable)]
 		[Tooltip("The direction from gameobject to target, express in 'Space' reference")]
 		public FsmVector3 direction;
 
-		[RequiredField]
 		[UIHint(UIHint.Variable)]
 		[Tooltip("The 2d direction from gameobject to target, express in 'Space' reference")]
 		public FsmVector2 direction2d;
+
+		[UIHint(UIHint.Variable)]
+		[Tooltip("The distance between the two gameobjects, make sense when normaized is false")]
+		public FsmFloat distance;
 		
 
 		private GameObject _source;
 		private GameObject _target;
+
+		private Vector3 _dir;
 
 		public override void Reset()
 		{
@@ -52,8 +59,10 @@ namespace HutongGames.PlayMaker.Actions
 			target = new FsmOwnerDefault();
 			target.OwnerOption = OwnerDefaultOption.SpecifyGameObject;
 			space = Space.World;
+			normalize = true;
 			direction = null;
 			direction2d = null;
+			distance = null;
 		}
 
 		public override void OnEnter()
@@ -84,17 +93,22 @@ namespace HutongGames.PlayMaker.Actions
 
 			if (space == Space.World)
 			{
-				if (!direction.IsNone)	direction.Value = _source.transform.position - _target.transform.position;
-
-				if (!direction2d.IsNone) direction2d.Value =  _source.transform.position - _target.transform.position;
+				_dir = _source.transform.position - _target.transform.position;
+				if (normalize) _dir.Normalize();
+				
+				if (!direction.IsNone)	direction.Value = _dir;
+				if (!direction2d.IsNone) direction2d.Value =  _dir;
 			}
 			else
 			{
-				if (!direction.IsNone)	direction.Value = _source.transform.InverseTransformDirection(_target.transform.position);
-
-				if (!direction2d.IsNone) direction2d.Value = _source.transform.InverseTransformDirection(_target.transform.position);
-
+				_dir = _source.transform.InverseTransformDirection(_target.transform.position);
+				if (normalize) _dir.Normalize();
+				
+				if (!direction.IsNone)	direction.Value = _dir;
+				if (!direction2d.IsNone) direction2d.Value = _dir;
 			}
+
+			if(!distance.IsNone)	distance = _dir.magnitude;
 		}
 
 		public override string ErrorCheck()
