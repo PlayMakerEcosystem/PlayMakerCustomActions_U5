@@ -1,4 +1,4 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2018. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved. 
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 
 using UnityEngine;
@@ -7,12 +7,10 @@ using UnityEngine.EventSystems;
 
 namespace HutongGames.PlayMaker.Actions
 {
-    [ActionCategory("UI")]
+    [ActionCategory(ActionCategory.UI)]
     [Tooltip("Set up multiple button events in a single action.")]
     public class UiButtonArrayIndex : FsmStateAction
     {
-#if PLAYMAKER_1_9_OR_NEWER
-
         [Tooltip("Where to send the events.")]
         public FsmEventTarget eventTarget;
 
@@ -41,7 +39,6 @@ namespace HutongGames.PlayMaker.Actions
             gameObjects = new FsmGameObject[3];
             clickEvents = new FsmEvent[3];
             clickIndex = new FsmInt() { UseVariable = true };
-
         }
 
         /// <summary>
@@ -50,18 +47,20 @@ namespace HutongGames.PlayMaker.Actions
         /// </summary>
 	    public override void OnPreprocess()
         {
-
             buttons = new UnityEngine.UI.Button[gameObjects.Length];
             cachedGameObjects = new GameObject[gameObjects.Length];
             actions = new UnityAction[gameObjects.Length];
 
             InitButtons();
-
-
         }
 
         private void InitButtons()
         {
+            if (cachedGameObjects == null || cachedGameObjects.Length != gameObjects.Length)
+            {
+                OnPreprocess();
+            }
+
             for (var i = 0; i < gameObjects.Length; i++)
             {
                 var go = gameObjects[i].Value;
@@ -104,17 +103,7 @@ namespace HutongGames.PlayMaker.Actions
         public void OnClick(int index)
         {
             clickIndex.Value = index;
-
             Fsm.Event(gameObjects[index].Value, eventTarget, clickEvents[index]);
-        }
-#endif
-        public override string ErrorCheck()
-        {
-            #if PLAYMAKER_1_9_OR_NEWER
-                return "";
-            #else
-                return "PlayMaker 1.9 Or Newer Required!";
-            #endif
         }
     }
 }
