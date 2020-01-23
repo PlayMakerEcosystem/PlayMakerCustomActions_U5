@@ -13,7 +13,7 @@ namespace HutongGames.PlayMaker.Actions
 		[RequiredField]
 		public FsmString url;
 		
-		[Tooltip("When in webPlayer, will open a new window, define the name of that window here.")]
+		[Tooltip("When in webPlayer or webgl, will open a new window, define the name of that window here.")]
 		public FsmString WebWindowTitle;
 		
 		public override void Reset()
@@ -35,7 +35,12 @@ namespace HutongGames.PlayMaker.Actions
 
 #endif
             {
-                Application.OpenURL(url.Value);
+#if UNITY_WEBGL
+       Application.ExternalEval("window.open('" + url + "','" + WebWindowTitle.Value + "')");
+	           #else 
+	            Application.OpenURL(url.Value);
+#endif
+	           
             }
             Finish();
         }
