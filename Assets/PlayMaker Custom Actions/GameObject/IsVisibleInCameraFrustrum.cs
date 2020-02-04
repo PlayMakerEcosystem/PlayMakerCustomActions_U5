@@ -37,7 +37,12 @@ namespace HutongGames.PlayMaker.Actions
 		GameObject go;
 		Camera _cam = null;
 		bool isVisible;
+#if UNITY_2017_3_OR_NEWER
+		private Plane[] planes = new Plane[6];
+#else
 		private Plane[] planes;
+#endif
+		
 		
 		public override void Reset ()
 		{
@@ -99,7 +104,14 @@ namespace HutongGames.PlayMaker.Actions
 		
 		public bool IsVisibleFrom (Renderer renderer, Camera camera)
 		{
+#if UNITY_2017_3_OR_NEWER
+			
+
+			GeometryUtility.CalculateFrustumPlanes(camera, planes);
+			#else
 			planes = GeometryUtility.CalculateFrustumPlanes (camera);
+#endif
+			
 			return GeometryUtility.TestPlanesAABB (planes, renderer.bounds);
 		}
 		
