@@ -24,9 +24,11 @@ namespace HutongGames.PlayMaker.Actions
         public Space space;
 
         [Tooltip("Store the magnitude / speed")]
+        [UIHint(UIHint.Variable)]
         public FsmFloat storeMagnitude;
         
         [Tooltip("Store the square magnitude / speed. Takes less performances")]
+        [UIHint(UIHint.Variable)]
         public FsmFloat storeSquareMagnitude;
         
         public UpdateType updateType;
@@ -40,8 +42,8 @@ namespace HutongGames.PlayMaker.Actions
         {
             gameObject = null;
             storeDirection = null;
-            storeMagnitude = new FsmFloat(){UseVariable = true};
-            storeSquareMagnitude = new FsmFloat(){UseVariable = true};;
+            storeMagnitude = null;
+            storeSquareMagnitude = null;
         }
 
         public override void OnPreprocess()
