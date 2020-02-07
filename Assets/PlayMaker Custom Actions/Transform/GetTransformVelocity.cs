@@ -78,7 +78,7 @@ namespace HutongGames.PlayMaker.Actions
             
             _direction = _go.transform.position - lastPos;
             
-            if (!storeSquareMagnitude.IsNone) storeSquareMagnitude.Value = (_direction / Time.deltaTime).sqrMagnitude;
+            if (!storeSquareMagnitude.IsNone) storeSquareMagnitude.Value = Mathf.Round((_direction / Time.deltaTime).sqrMagnitude * 100f) / 100f;
        
             if (!storeMagnitude.IsNone)    storeMagnitude.Value = Mathf.Round((_direction / Time.deltaTime).magnitude * 100f) / 100f;
 
