@@ -41,9 +41,9 @@ namespace HutongGames.PlayMaker.Actions
 	    private GameObject go;
 	    private GameObject goTarget;
 	    private Vector3 lookAtPos;
-	    private Vector3 lookAtPosWithVertical;
-        
-		private Vector3 upVectorValue;
+
+	    private Vector3 upVectorValue;
+	    
 		public override void Reset()
 		{
 			gameObject = null;
@@ -73,7 +73,7 @@ namespace HutongGames.PlayMaker.Actions
 				Finish();
 			}
 		}
-
+		
 		public override void OnLateUpdate()
 		{
 			DoLookAt();
@@ -92,6 +92,7 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				Debug.DrawLine(go.transform.position, go.transform.position + upVectorValue,Color.red);
 				Debug.DrawLine(go.transform.position, lookAtPos, debugLineColor.Value);
+				
 			}
 		}
 
@@ -109,6 +110,7 @@ namespace HutongGames.PlayMaker.Actions
                 return false;
             }
 
+         
             if (goTarget != null)
             {
                 lookAtPos = !targetPosition.IsNone ? goTarget.transform.TransformPoint(targetPosition.Value) : goTarget.transform.position;
@@ -120,17 +122,19 @@ namespace HutongGames.PlayMaker.Actions
 			
 			upVectorValue = upVector.IsNone ? Vector3.up : upVector.Value;
 			
-            lookAtPosWithVertical = lookAtPos;
-
+      
             if (keepVertical.Value)
             {
 				if (constraintLocally.Value)
 				{
-					lookAtPos = go.transform.InverseTransformPoint(lookAtPos);
-					lookAtPos.y = 0;
-					lookAtPos = go.transform.TransformPoint(lookAtPos);
+					//lookAtPos = go.transform.InverseTransformPoint(lookAtPos);
+				//	lookAtPos.y = 0;
+					//lookAtPos = go.transform.TransformPoint(lookAtPos);
+					upVectorValue = go.transform.TransformDirection(upVectorValue);
 					
-					upVectorValue = go.transform.TransformPoint(upVector.Value);
+					lookAtPos = go.transform.position + Vector3.ProjectOnPlane(lookAtPos, upVectorValue);
+					
+					
 				}else{
 					lookAtPos.y = go.transform.position.y;
 				} 
@@ -138,15 +142,6 @@ namespace HutongGames.PlayMaker.Actions
 
             return true;
         }
-
-        public Vector3 GetLookAtPosition()
-        {
-            return lookAtPos;
-        }
-
-        public Vector3 GetLookAtPositionWithVertical()
-        {
-            return lookAtPosWithVertical;
-        }
+        
 	}
 }
