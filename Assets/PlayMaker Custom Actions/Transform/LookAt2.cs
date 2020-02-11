@@ -85,9 +85,12 @@ namespace HutongGames.PlayMaker.Actions
 			{
 			    return;
 			}
-			
-			go.transform.LookAt(lookAtPos, upVectorValue);			
-			
+
+			if (!keepVertical.Value && !constraintLocally.Value)
+			{
+				go.transform.LookAt(lookAtPos, upVectorValue);
+			}
+
 			if (debug.Value)
 			{
 				Debug.DrawLine(go.transform.position, go.transform.position + upVectorValue,Color.red);
@@ -130,11 +133,16 @@ namespace HutongGames.PlayMaker.Actions
 					//lookAtPos = go.transform.InverseTransformPoint(lookAtPos);
 				//	lookAtPos.y = 0;
 					//lookAtPos = go.transform.TransformPoint(lookAtPos);
+					
 					upVectorValue = go.transform.TransformDirection(upVectorValue);
 					
-					lookAtPos = go.transform.position + Vector3.ProjectOnPlane(lookAtPos, upVectorValue);
 					
-					
+				//	lookAtPos = Vector3.ProjectOnPlane(go.transform.position + lookAtPos, upVectorValue);
+
+				Vector3 lookAtPosFinal = Vector3.ProjectOnPlane( lookAtPos - go.transform.position, upVectorValue);
+				 Quaternion qTo = Quaternion.LookRotation(lookAtPosFinal, upVectorValue);
+				 go.transform.rotation = qTo;
+
 				}else{
 					lookAtPos.y = go.transform.position.y;
 				} 
