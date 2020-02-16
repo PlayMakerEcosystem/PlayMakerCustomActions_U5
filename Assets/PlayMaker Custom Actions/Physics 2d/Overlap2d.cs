@@ -1,4 +1,5 @@
-﻿// License: Attribution 4.0 International (CC BY 4.0)
+﻿// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0)
 //Author: Digitom: https://hutonggames.com/playmakerforum/index.php?topic=18337.0;topicseen
 /*--- __ECO__ __PLAYMAKER__ __ACTION__
 EcoMetaStart

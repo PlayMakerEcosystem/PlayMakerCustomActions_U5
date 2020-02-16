@@ -1,3 +1,5 @@
+// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0)
 //v1.4
 
 // License: Attribution 4.0 International (CC BY 4.0)

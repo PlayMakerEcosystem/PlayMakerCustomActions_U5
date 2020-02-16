@@ -1,4 +1,5 @@
-// License: Attribution 4.0 International (CC BY 4.0)
+// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0)
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 // Source http://hutonggames.com/playmakerforum/index.php?topic=10495.0
 // Keywords: Fighter 2d Camera / Camera smooth follow multiple gameobject

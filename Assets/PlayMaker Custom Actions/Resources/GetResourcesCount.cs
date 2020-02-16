@@ -1,4 +1,5 @@
-// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
+// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0) 
 // original action from Amaranth : http://hutonggames.com/playmakerforum/index.php?action=post;topic=3138.0;last_msg=52910
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 

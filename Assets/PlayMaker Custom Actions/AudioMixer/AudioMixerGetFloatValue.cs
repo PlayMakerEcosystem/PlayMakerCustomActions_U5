@@ -1,4 +1,5 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2019. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0) 
 // original actions from Tropical: http://hutonggames.com/playmakerforum/index.php?topic=11218.msg52963#msg52963
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 

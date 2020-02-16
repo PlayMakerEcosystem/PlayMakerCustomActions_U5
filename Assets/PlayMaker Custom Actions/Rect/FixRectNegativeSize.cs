@@ -1,4 +1,5 @@
-// License: Attribution 4.0 International (CC BY 4.0)
+// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0)
 /*--- __ECO__ __PLAYMAKER__ __ACTION__ ---*/
 // Keywords: rect fix negative
 // Source https://answers.unity.com/questions/288438/rectcontains-cant-accept-rects-with-a-negative-wid.html#

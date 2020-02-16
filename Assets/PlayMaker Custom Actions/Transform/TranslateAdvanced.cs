@@ -1,4 +1,5 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2015. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.  
+// License: Attribution 4.0 International(CC BY 4.0) 
 // REMOVED ECOSYSTEM FLAG TO AVOID DUPLICATES IN ECOSYSTEM BROWSER, AS IT SEARCHED THIS REP AS WELL
 
 using UnityEngine;
