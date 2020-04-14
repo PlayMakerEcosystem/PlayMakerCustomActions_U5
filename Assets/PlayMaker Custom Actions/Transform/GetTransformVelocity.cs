@@ -27,18 +27,17 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("Store the magnitude / speed")]
         [UIHint(UIHint.Variable)]
         public FsmFloat storeMagnitude;
-        
+       
         [Tooltip("Store the square magnitude / speed. Takes less performances")]
         [UIHint(UIHint.Variable)]
         public FsmFloat storeSquareMagnitude;
-        
+       
         public UpdateType updateType;
-        
-        private Vector3 lastPos;
-
+       
+        private Vector3 _lastPos;
         private Vector3 _direction;
-
         private GameObject _go;
+
         public override void Reset()
         {
             gameObject = null;
@@ -53,6 +52,12 @@ namespace HutongGames.PlayMaker.Actions
                 Fsm.HandleFixedUpdate = true;
             else if (updateType == UpdateType.LateUpdate)
                 Fsm.HandleLateUpdate = true;
+        }
+
+        public override void OnEnter()
+        {
+            _go = Fsm.GetOwnerDefaultTarget(gameObject);
+            _lastPos = _go.transform.position;
         }
 
         public override void OnUpdate()
@@ -75,21 +80,20 @@ namespace HutongGames.PlayMaker.Actions
 
         void CalculateSpeed()
         {
-            _go = Fsm.GetOwnerDefaultTarget(gameObject);
-            
-            _direction = _go.transform.position - lastPos;
-            
+           
+            _direction = _go.transform.position - _lastPos;
+           
             if (!storeSquareMagnitude.IsNone) storeSquareMagnitude.Value = Mathf.Round((_direction / Time.deltaTime).sqrMagnitude * 100f) / 100f;
-       
-            if (!storeMagnitude.IsNone)    storeMagnitude.Value = Mathf.Round((_direction / Time.deltaTime).magnitude * 100f) / 100f;
+
+            if (!storeMagnitude.IsNone) storeMagnitude.Value = Mathf.Round((_direction / Time.deltaTime).magnitude * 100f) / 100f;
 
             _direction = _direction.normalized;
-            
+           
             if (space == Space.Self) _direction = _go.transform.InverseTransformDirection(_direction);
-            
+           
             if (!storeDirection.IsNone) storeDirection.Value = _direction;
-            
-            lastPos = _go.transform.position;
+           
+            _lastPos = _go.transform.position;
         }
 
     }
