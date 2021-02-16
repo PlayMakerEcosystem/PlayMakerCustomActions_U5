@@ -63,7 +63,16 @@ namespace HutongGames.PlayMakerEditor
 				// Target vector
 				
 				Handles.DrawLine(goPosition, lookAtPosition);
+				
+#if UNITY_2020_1_OR_NEWER
+				Handles.ArrowHandleCap(0,
+					goPosition + lookAtVector.normalized * (distance - arrowSize * 0.7f),
+					lookAtRotation,
+					arrowSize, EventType.Repaint);
+#else
 				Handles.ConeCap(0, goPosition + lookAtVector.normalized * (distance - arrowSize * 0.7f), lookAtRotation, arrowSize); // fudge factor to position cap correctly
+
+#endif
 				
 				// Show vertical offset
 				
