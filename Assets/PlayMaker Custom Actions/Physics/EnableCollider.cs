@@ -66,13 +66,13 @@ namespace HutongGames.PlayMaker.Actions
 			var gos = Fsm.GetOwnerDefaultTarget(gameObject);
 			if (gos == null)
 			{
-				Debug.LogWarning("missing gameObject: "+ gos.name);
+				LogWarning("Missing target GameObject!");
 				return;
 			}
 
 			if (allCollider.Value == false & component == null & colliderSelect == Selection.None)
 			{
-				Debug.LogWarning(gos.name + " !!! Check your setup ");
+				LogWarning(gos.name + " !!! Check your setup ");
 				return;
 			}
 
@@ -125,8 +125,8 @@ namespace HutongGames.PlayMaker.Actions
 			if (colliderSelect == Selection.None || component != null){
 
 
-			if (allCollider.Value == false)
-			DoEnableScript(Fsm.GetOwnerDefaultTarget(gameObject));
+                if (allCollider.Value == false)
+                    DoEnableScript(Fsm.GetOwnerDefaultTarget(gameObject));
 
 			}
 
@@ -142,8 +142,8 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 
-				componentTarget = component as Collider;
-				componentTarget.enabled = enable.Value;
+            componentTarget = component as Collider;
+            componentTarget.enabled = enable.Value;
 
 			if (inclChildren.Value == true)
 			{
@@ -153,17 +153,17 @@ namespace HutongGames.PlayMaker.Actions
 					var child = go.transform.GetChild(i).gameObject;
 					if(child != null){
 
-					if (colliderSelect != Selection.None)
-					{
-					(child.gameObject.GetComponent(script.Value) as Collider).enabled = enable.Value;
-					}
+                        if (colliderSelect != Selection.None)
+                        {
+                            (child.gameObject.GetComponent(script.Value) as Collider).enabled = enable.Value;
+                        }
 
-						else {
-							Debug.LogWarning("Please select type for child filter !!!");
-							return;
-						}
+                        else {
+                            Debug.LogWarning("Please select type for child filter !!!");
+                            return;
+                        }
 				
-				}
+                    }
 				}
 
 			}
@@ -174,8 +174,9 @@ namespace HutongGames.PlayMaker.Actions
 		{
 
 			Collider[] scriptComponents = go.gameObject.GetComponents<Collider>();    
-			foreach(Collider script in scriptComponents) {
-			script.enabled = enable.Value;
+			foreach(Collider script in scriptComponents)
+            {
+                script.enabled = enable.Value;
 			}
 
 			if (inclChildren.Value == true)
