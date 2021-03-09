@@ -9,7 +9,7 @@ namespace HutongGames.PlayMaker.Actions
 {
     [ActionCategory(ActionCategory.Application)]
     [Tooltip("Sends an Event if on the specified Platforms or not.")]
-    public class RuntimePlatformEnum : FsmStateAction
+    public class RuntimePlatformEvent : FsmStateAction
     {
         [CompoundArray("Enum Switches", "Compare Enum Values", "Send")] 
         [MatchFieldType("enumVariable")]
